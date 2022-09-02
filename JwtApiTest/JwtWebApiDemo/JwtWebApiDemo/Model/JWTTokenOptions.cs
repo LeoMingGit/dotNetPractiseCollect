@@ -8,23 +8,7 @@ namespace JwtWebApiDemo.Model
 {
     public class JWTTokenOptions
     {
-        public string SecurityKey
-        {
-            get;
-            set;
-        }
-        public string Issuer
-        {
-            get;
-            set;
-        }
-        public string Audience
-        {
-            get;
-            set;
-        }
-     
-   
+        public string SigningKey { get; set; }
         public int ExpireSeconds { get; set; }
     }
 }

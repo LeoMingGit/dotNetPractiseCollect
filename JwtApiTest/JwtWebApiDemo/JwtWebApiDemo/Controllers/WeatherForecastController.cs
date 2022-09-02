@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace JwtWebApiDemo.Controllers
 {
     [ApiController]
+    // [Authorize]
+    [VerifyAttribute]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
@@ -20,8 +22,8 @@ namespace JwtWebApiDemo.Controllers
             _logger = logger;
         }
 
-        [VerifyAttribute]
-        //[Authorize]
+        // [VerifyAttribute]
+      //  [Authorize]
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {

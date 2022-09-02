@@ -13,7 +13,7 @@ builder.Services.AddSwaggerGen(c =>
 {
     var scheme = new OpenApiSecurityScheme()
     {
-        Description = "Authorization header. \r\nExample: 'Bearer abcdedf123456'",
+        Description = "JWT授权(数据将在请求头中进行传输) 直接在下框中输入Bearer {token}(注意两者之间有一个空格)",
         Reference = new OpenApiReference
         {
             Type = ReferenceType.SecurityScheme,
@@ -40,7 +40,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+#region jwt 模块必须写这个
+app.UseAuthentication();
 app.UseAuthorization();
+#endregion
 
 app.MapControllers();
 

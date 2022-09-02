@@ -19,10 +19,7 @@ namespace JwtWebApiDemo.Extensions
             {
                 throw new ArgumentNullException(nameof(request));
             }
-
-            //return request.Headers.ContainsKey("X-Requested-With") &&
-            //       request.Headers["X-Requested-With"].Equals("XMLHttpRequest");
-
+     
             return request.Headers["X-Requested-With"] == "XMLHttpRequest" || (request.Headers != null && request.Headers["X-Requested-With"] == "XMLHttpRequest");
         }
 
@@ -37,7 +34,7 @@ namespace JwtWebApiDemo.Extensions
             var result = context.Request.Headers["X-Forwarded-For"].FirstOrDefault();
             if (string.IsNullOrEmpty(result))
             {
-                result = context.Connection.RemoteIpAddress.ToString();
+                result = context.Connection.RemoteIpAddress?.ToString();
             }
             if (string.IsNullOrEmpty(result) || result.Contains("::1"))
                 result = "127.0.0.1";
@@ -80,12 +77,7 @@ namespace JwtWebApiDemo.Extensions
         {
             return context.User?.Identities;
         }
-        //public static int GetRole(this HttpContext context)
-        //{
-        //    var roleid = context.User.FindFirstValue(ClaimTypes.Role) ?? "0";
 
-        //    return int.Parse(roleid);
-        //}
 
         public static string GetUserAgent(this HttpContext context)
         {

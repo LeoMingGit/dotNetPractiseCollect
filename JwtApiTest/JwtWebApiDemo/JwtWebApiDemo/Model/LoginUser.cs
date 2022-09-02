@@ -17,12 +17,5 @@ namespace JwtWebApiDemo.Model
 
         public string  PassWord { get; set; }
 
-        [Required]
-        public string UserType { get; set; }    
-
-        public LoginUser()
-        {
-        }
-
     }
 }
