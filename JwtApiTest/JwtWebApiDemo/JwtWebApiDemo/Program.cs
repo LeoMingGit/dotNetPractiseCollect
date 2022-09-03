@@ -41,7 +41,9 @@ if (app.Environment.IsDevelopment())
 }
 
 #region jwt 模块必须写这个
+//1.先开启认证
 app.UseAuthentication();
+//2.再开启授权
 app.UseAuthorization();
 #endregion
 
