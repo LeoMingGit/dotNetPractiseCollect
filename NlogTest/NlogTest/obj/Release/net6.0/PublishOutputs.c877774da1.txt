@@ -1,0 +1,14 @@
+F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\obj\Release\net6.0\PubTmp\Out\NlogTest.exe
+F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\obj\Release\net6.0\PubTmp\Out\nlog.config
+F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
+F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\obj\Release\net6.0\PubTmp\Out\appsettings.json
+F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\obj\Release\net6.0\PubTmp\Out\NlogTest.dll
+F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\obj\Release\net6.0\PubTmp\Out\NlogTest.deps.json
+F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\obj\Release\net6.0\PubTmp\Out\NlogTest.runtimeconfig.json
+F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\obj\Release\net6.0\PubTmp\Out\NlogTest.pdb
+F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\obj\Release\net6.0\PubTmp\Out\Microsoft.OpenApi.dll
+F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\obj\Release\net6.0\PubTmp\Out\NLog.dll
+F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\obj\Release\net6.0\PubTmp\Out\NLog.Extensions.Logging.dll
+F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\obj\Release\net6.0\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
+F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\obj\Release\net6.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
+F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\obj\Release\net6.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll

@@ -1,0 +1,30 @@
+2022-09-03 17:44:48.0742 |  | ERROR | NlogTest.Controllers.LoggingTestController |  |  |  | Msg:异常哈哈
+ stackTrace:   at NlogTest.BLL.SysBLL.QueryUsers() in F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\BLL\SysBLL.cs:line 8
+   at NlogTest.Controllers.LoggingTestController.Test01(Int32 id) in F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\Controllers\LoggingTestController.cs:line 29 |  |  | 
+2022-09-03 17:45:38.4770 |  | ERROR | NlogTest.Controllers.LoggingTestController |  |  |  | Msg:sql 发生异常了
+ stackTrace:   at NlogTest.BLL.SqlLogic.Test01() in F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\BLL\SqlLogic.cs:line 7
+   at NlogTest.Controllers.LoggingTestController.SQLTest01(Int32 id) in F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\Controllers\LoggingTestController.cs:line 44 |  |  | 
+2022-09-03 17:46:59.3755 |  | ERROR | NlogTest.Controllers.LoggingTestController |  |  |  | Msg:sql 发生异常了
+ stackTrace:   at NlogTest.BLL.SqlLogic.Test01() in F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\BLL\SqlLogic.cs:line 7
+   at NlogTest.Controllers.LoggingTestController.SQLTest01(Int32 id) in F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\Controllers\LoggingTestController.cs:line 44 |  |  | 
+2022-09-03 17:47:24.0199 |  | ERROR | NlogTest.Controllers.LoggingTestController |  |  |  | Msg:sql 发生异常了
+ stackTrace:   at NlogTest.BLL.SqlLogic.Test01() in F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\BLL\SqlLogic.cs:line 7
+   at NlogTest.Controllers.LoggingTestController.SQLTest01(Int32 id) in F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\Controllers\LoggingTestController.cs:line 44 |  |  | 
+2022-09-03 17:47:25.1779 |  | ERROR | NlogTest.Controllers.LoggingTestController |  |  |  | Msg:sql 发生异常了
+ stackTrace:   at NlogTest.BLL.SqlLogic.Test01() in F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\BLL\SqlLogic.cs:line 7
+   at NlogTest.Controllers.LoggingTestController.SQLTest01(Int32 id) in F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\Controllers\LoggingTestController.cs:line 44 |  |  | 
+2022-09-03 17:47:42.2031 |  | ERROR | NlogTest.Controllers.LoggingTestController |  |  |  | Msg:sql 发生异常了
+ stackTrace:   at NlogTest.BLL.SqlLogic.Test01() in F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\BLL\SqlLogic.cs:line 7
+   at NlogTest.Controllers.LoggingTestController.SQLTest01(Int32 id) in F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\Controllers\LoggingTestController.cs:line 44 |  |  | 
+2022-09-03 17:48:06.3284 |  | ERROR | NlogTest.Controllers.LoggingTestController |  |  |  | Msg:sql 发生异常了
+ stackTrace:   at NlogTest.BLL.SqlLogic.Test01() in F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\BLL\SqlLogic.cs:line 7
+   at NlogTest.Controllers.LoggingTestController.SQLTest01(Int32 id) in F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\Controllers\LoggingTestController.cs:line 44 |  |  | 
+2022-09-03 17:49:38.4975 |  | ERROR | NlogTest.Controllers.LoggingTestController |  |  |  | Msg:sql 发生异常了
+ stackTrace:   at NlogTest.BLL.SqlLogic.Test01() in F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\BLL\SqlLogic.cs:line 7
+   at NlogTest.Controllers.LoggingTestController.SQLTest01(Int32 id) in F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\Controllers\LoggingTestController.cs:line 44 |  |  | 
+2022-09-03 17:49:49.2095 |  | ERROR | NlogTest.Controllers.LoggingTestController |  |  |  | Msg:异常哈哈
+ stackTrace:   at NlogTest.BLL.SysBLL.QueryUsers() in F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\BLL\SysBLL.cs:line 8
+   at NlogTest.Controllers.LoggingTestController.Test01(Int32 id) in F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\Controllers\LoggingTestController.cs:line 29 |  |  | 
+2022-09-03 17:55:26.4006 |  | ERROR | NlogTest.Controllers.LoggingTestController |  |  |  | Msg:异常哈哈
+ stackTrace:   at NlogTest.BLL.SysBLL.QueryUsers() in F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\BLL\SysBLL.cs:line 8
+   at NlogTest.Controllers.LoggingTestController.Test01(Int32 id) in F:\CODE\dotNetPractise2022Collect\NlogTest\NlogTest\Controllers\LoggingTestController.cs:line 29 |  |  | 
