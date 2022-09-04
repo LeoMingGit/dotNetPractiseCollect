@@ -17,7 +17,7 @@ dotNet技术栈练习代码2022
 
 1.  Jwt
 2.  Nlog
-3.  xxxx
+3.  EfCore
 
 #### 参与贡献
 
