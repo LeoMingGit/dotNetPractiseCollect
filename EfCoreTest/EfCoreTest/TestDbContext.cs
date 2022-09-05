@@ -6,7 +6,7 @@ namespace EfCoreTest
 {
     public class TestDbContext : DbContext
     {
-
+        public DbSet<User> Users { get; set; }
         public DbSet<Book> Books { get; set; }
 
         public DbSet<Dog> Dogs { get; set; }
