@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EfCoreTest.Common;
+using Microsoft.Data.SqlClient;
 
 namespace EfCoreTest.Test
 {
@@ -19,9 +21,9 @@ namespace EfCoreTest.Test
         /// <summary>
         /// 批量插入数据
         /// </summary>
-        public  void  BatchInsertToDog()
+        public void BatchInsertToDog()
         {
-            using (var db = new TestDbContext())
+            using (var ctx = new TestDbContext())
             {
                 var clockInsert = new Stopwatch();//统计耗时
 
@@ -31,14 +33,27 @@ namespace EfCoreTest.Test
                     Dog d = new Dog()
                     {
                         Code = Guid.NewGuid().ToString("N").Substring(0, 6),
-                        Name = "Sheldonor"+ new Random().Next(1,1000),
+                        Name = "Sheldonor" + new Random().Next(1, 1000),
                     };
                     lst.Add(d);
                 }
                 clockInsert.Start();
-                db.BulkInsert(lst);
+                ctx.BulkInsert(lst);
                 clockInsert.Stop();
                 Console.WriteLine($"总共用时： {clockInsert.ElapsedMilliseconds} + \" ms\"");
+            }
+        }
+
+        public void TestQuery()
+        {
+            using (var ctx = new TestDbContext())
+            {
+                string sql = "select * from [T_Dog] ";
+                List<SqlParameter> para = new List<SqlParameter>();
+                int page = 1;
+                int limit = 20;
+                List<Dog> lst = EfCoreHelper.ExecutePaginationSqlRtnList<Dog>(ctx,sql, para, " Name desc", limit, page);
+                int total = EfCoreHelper.ExecuteCountSql(ctx,sql ,para);
             }
         }
     }

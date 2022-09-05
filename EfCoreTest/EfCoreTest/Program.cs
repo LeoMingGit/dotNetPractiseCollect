@@ -2,5 +2,6 @@
 using EfCoreTest.Test;
 
 TestDog dog = new TestDog();
-dog.InsertToDog();
+dog.TestQuery();
+//dog.BatchInsertToDog();
 Console.WriteLine("Hello, World!");
