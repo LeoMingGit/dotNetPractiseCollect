@@ -14,13 +14,8 @@ namespace EfCoreTest
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-<<<<<<< HEAD
             string DefaultConnection = "Data Source=Computer-2021TO\\SQLEXPRESS;Initial Catalog=YZK;Persist Security Info=True;User ID=sa;Password=123456";
-          //  string DefaultConnection = "Data Source=.;Initial Catalog=test;Persist Security Info=True;User ID=sa;Password=123456";
-=======
-            // string DefaultConnection = "Data Source=Computer-2021TO\\SQLEXPRESS;Initial Catalog=YZK;Persist Security Info=True;User ID=sa;Password=123456";
-            string DefaultConnection = "Data Source=.;Initial Catalog=test;Persist Security Info=True;User ID=sa;Password=123456";
->>>>>>> 2b2cea6d58c7e74b11566396018dedf18f7aa1ad
+           // string DefaultConnection = "Data Source=.;Initial Catalog=test;Persist Security Info=True;User ID=sa;Password=123456";
             optionsBuilder.UseSqlServer(DefaultConnection);
             optionsBuilder.LogTo(Console.WriteLine);
         }

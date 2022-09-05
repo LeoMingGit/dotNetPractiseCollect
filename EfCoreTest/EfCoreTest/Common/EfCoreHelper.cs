@@ -24,9 +24,9 @@ namespace EfCoreTest.Common
         /// <param name="limit"></param>
         /// <param name="page"></param>
         /// <returns></returns>
-        public static List<T> ExecutePaginationSqlRtnList<T>(DbContext ctx,  string sql, List<SqlParameter> listParam, string sort, int limit, int page)
+        public static List<T> ExecutePaginationSqlRtnList<T>(DbContext ctx, string sql, List<SqlParameter> listParam, string sort, int limit, int page)
         {
-            DataTable dt = ExecutePaginationSqlRtnDataTable(ctx, sql listParam, sort, limit, page);
+            DataTable dt = ExecutePaginationSqlRtnDataTable(ctx, sql , listParam, sort, limit, page);
             return CommonHelper.ConvertDataTable<T>(dt);
         }
 
