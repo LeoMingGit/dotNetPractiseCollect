@@ -5,5 +5,7 @@ using EfCoreTest.Test;
 //dog.TestQuery();
 //dog.BatchInsertToDog();
 UsersTest t = new UsersTest();
-t.QueryUsers();
+//t.QueryUsers();
+//t.InsertUser();
+t.DelUser();
 Console.WriteLine("Hello, World!");
