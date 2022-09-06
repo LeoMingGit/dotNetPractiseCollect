@@ -22,6 +22,53 @@ namespace EfCoreTest.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("EfCoreTest.关系配置.一对多.Article", b =>
+                {
+                    b.Property<string>("Code")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.HasKey("Code");
+
+                    b.ToTable("T_Articles");
+                });
+
+            modelBuilder.Entity("EfCoreTest.关系配置.一对多.Comment", b =>
+                {
+                    b.Property<string>("Code")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("AriticleCodeRef")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime?>("AuditTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.HasKey("Code");
+
+                    b.HasIndex("AriticleCodeRef");
+
+                    b.ToTable("T_Comments");
+                });
+
             modelBuilder.Entity("EfCoreTest.关系配置.一对一.Delivery", b =>
                 {
                     b.Property<string>("Code")
@@ -142,6 +189,17 @@ namespace EfCoreTest.Migrations
                     b.ToTable("T_Users");
                 });
 
+            modelBuilder.Entity("EfCoreTest.关系配置.一对多.Comment", b =>
+                {
+                    b.HasOne("EfCoreTest.关系配置.一对多.Article", "Article")
+                        .WithMany("Comments")
+                        .HasForeignKey("AriticleCodeRef")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Article");
+                });
+
             modelBuilder.Entity("EfCoreTest.关系配置.一对一.Delivery", b =>
                 {
                     b.HasOne("EfCoreTest.关系配置.一对一.Order", "Order")
@@ -151,6 +209,11 @@ namespace EfCoreTest.Migrations
                         .IsRequired();
 
                     b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("EfCoreTest.关系配置.一对多.Article", b =>
+                {
+                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("EfCoreTest.关系配置.一对一.Order", b =>

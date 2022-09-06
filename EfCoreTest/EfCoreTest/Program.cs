@@ -1,5 +1,11 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using EfCoreTest.Test;
+//常用命令
+//Install-Package Microsoft.EntityFrameworkCore.Tools
+//Add-Migration -initName
+//Update-DataBase 
+
+
 
 //TestDog dog = new TestDog();
 //dog.TestQuery();

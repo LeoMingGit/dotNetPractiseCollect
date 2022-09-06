@@ -1,11 +1,14 @@
 ﻿using EfCoreTest.model;
 using Microsoft.EntityFrameworkCore;
 using EfCoreTest.关系配置.一对一;
-
+using EfCoreTest.关系配置.一对多;
 namespace EfCoreTest
 {
     public class TestDbContext : DbContext
     {
+        public DbSet<Article> Articles { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+
         public DbSet<Order> Orders { get; set; }
         public DbSet<Delivery> Deliveries { get; set; }
         public DbSet<User> Users { get; set; }
