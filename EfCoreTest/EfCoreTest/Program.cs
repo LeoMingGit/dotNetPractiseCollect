@@ -15,5 +15,6 @@ using EfCoreTest.Test;
 //t.InsertUser();
 //t.DelUser();
 
-EfCoreTest.关系配置.一对一.TestData.Test();
+//EfCoreTest.关系配置.一对一.TestData.Test();
+EfCoreTest.关系配置.一对多.TestData.Test();
 Console.WriteLine("Hello, World!");

@@ -10,8 +10,9 @@ namespace EfCoreTest.关系配置.一对多
     [Table("T_Articles")]
     public class Article
     {
+
         [Key]
-        [Required]
+        [Required(ErrorMessage = "T_Articles Code字段不能为空")]
         [StringLength(50)]
         public string Code { get; set; }//主键
         [Required]
