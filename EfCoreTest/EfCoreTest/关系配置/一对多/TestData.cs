@@ -13,10 +13,18 @@ namespace EfCoreTest.关系配置.一对多
     {
         public static void Test()
         {
-            // InsertData();
-            RelateQuery();
+            InsertData();
+            //RelateQuery();
+            //  DelData();
         }
 
+        private static void DelData()
+        {
+            using TestDbContext ctx = new TestDbContext();
+            Article atc = ctx.Articles.First();
+            ctx.Articles.Remove(atc);
+            ctx.SaveChanges();
+        }
 
         /// <summary>
         /// ef  关联查询

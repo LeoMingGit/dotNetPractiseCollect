@@ -2,10 +2,14 @@
 using Microsoft.EntityFrameworkCore;
 using EfCoreTest.关系配置.一对一;
 using EfCoreTest.关系配置.一对多;
+using EfCoreTest.关系配置.多对多;
 namespace EfCoreTest
 {
     public class TestDbContext : DbContext
     {
+        public DbSet<StudentTeacherRelation> StudentTeacherRelations { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Student> Students { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<Comment> Comments { get; set; }
 

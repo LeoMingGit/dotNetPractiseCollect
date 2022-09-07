@@ -22,6 +22,59 @@ namespace EfCoreTest.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("EfCoreTest.关系配置.多对多.Student", b =>
+                {
+                    b.Property<string>("Code")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Code");
+
+                    b.ToTable("T_Students");
+                });
+
+            modelBuilder.Entity("EfCoreTest.关系配置.多对多.StudentTeacherRelation", b =>
+                {
+                    b.Property<string>("Code")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("StudentCode")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("TeacherCode")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Code");
+
+                    b.ToTable("T_StudentTeacherRelations");
+                });
+
+            modelBuilder.Entity("EfCoreTest.关系配置.多对多.Teacher", b =>
+                {
+                    b.Property<string>("Code")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Code");
+
+                    b.ToTable("T_Teachers");
+                });
+
             modelBuilder.Entity("EfCoreTest.关系配置.一对多.Article", b =>
                 {
                     b.Property<string>("Code")
@@ -189,6 +242,36 @@ namespace EfCoreTest.Migrations
                     b.ToTable("T_Users");
                 });
 
+            modelBuilder.Entity("StudentStudentTeacherRelation", b =>
+                {
+                    b.Property<string>("StudentTeacherRelationsCode")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("StudentsCode")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("StudentTeacherRelationsCode", "StudentsCode");
+
+                    b.HasIndex("StudentsCode");
+
+                    b.ToTable("StudentStudentTeacherRelation");
+                });
+
+            modelBuilder.Entity("StudentTeacherRelationTeacher", b =>
+                {
+                    b.Property<string>("StudentTeacherRelationsCode")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("TeachersCode")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("StudentTeacherRelationsCode", "TeachersCode");
+
+                    b.HasIndex("TeachersCode");
+
+                    b.ToTable("StudentTeacherRelationTeacher");
+                });
+
             modelBuilder.Entity("EfCoreTest.关系配置.一对多.Comment", b =>
                 {
                     b.HasOne("EfCoreTest.关系配置.一对多.Article", "Article")
@@ -209,6 +292,36 @@ namespace EfCoreTest.Migrations
                         .IsRequired();
 
                     b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("StudentStudentTeacherRelation", b =>
+                {
+                    b.HasOne("EfCoreTest.关系配置.多对多.StudentTeacherRelation", null)
+                        .WithMany()
+                        .HasForeignKey("StudentTeacherRelationsCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EfCoreTest.关系配置.多对多.Student", null)
+                        .WithMany()
+                        .HasForeignKey("StudentsCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("StudentTeacherRelationTeacher", b =>
+                {
+                    b.HasOne("EfCoreTest.关系配置.多对多.StudentTeacherRelation", null)
+                        .WithMany()
+                        .HasForeignKey("StudentTeacherRelationsCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EfCoreTest.关系配置.多对多.Teacher", null)
+                        .WithMany()
+                        .HasForeignKey("TeachersCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("EfCoreTest.关系配置.一对多.Article", b =>
