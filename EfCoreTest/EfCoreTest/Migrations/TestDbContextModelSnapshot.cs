@@ -56,6 +56,10 @@ namespace EfCoreTest.Migrations
 
                     b.HasKey("Code");
 
+                    b.HasIndex("StudentCode");
+
+                    b.HasIndex("TeacherCode");
+
                     b.ToTable("T_StudentTeacherRelations");
                 });
 
@@ -242,34 +246,23 @@ namespace EfCoreTest.Migrations
                     b.ToTable("T_Users");
                 });
 
-            modelBuilder.Entity("StudentStudentTeacherRelation", b =>
+            modelBuilder.Entity("EfCoreTest.关系配置.多对多.StudentTeacherRelation", b =>
                 {
-                    b.Property<string>("StudentTeacherRelationsCode")
-                        .HasColumnType("nvarchar(50)");
+                    b.HasOne("EfCoreTest.关系配置.多对多.Student", "Student")
+                        .WithMany("StudentTeacherRelations")
+                        .HasForeignKey("StudentCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<string>("StudentsCode")
-                        .HasColumnType("nvarchar(50)");
+                    b.HasOne("EfCoreTest.关系配置.多对多.Teacher", "Teacher")
+                        .WithMany("StudentTeacherRelations")
+                        .HasForeignKey("TeacherCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasKey("StudentTeacherRelationsCode", "StudentsCode");
+                    b.Navigation("Student");
 
-                    b.HasIndex("StudentsCode");
-
-                    b.ToTable("StudentStudentTeacherRelation");
-                });
-
-            modelBuilder.Entity("StudentTeacherRelationTeacher", b =>
-                {
-                    b.Property<string>("StudentTeacherRelationsCode")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("TeachersCode")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("StudentTeacherRelationsCode", "TeachersCode");
-
-                    b.HasIndex("TeachersCode");
-
-                    b.ToTable("StudentTeacherRelationTeacher");
+                    b.Navigation("Teacher");
                 });
 
             modelBuilder.Entity("EfCoreTest.关系配置.一对多.Comment", b =>
@@ -294,34 +287,14 @@ namespace EfCoreTest.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("StudentStudentTeacherRelation", b =>
+            modelBuilder.Entity("EfCoreTest.关系配置.多对多.Student", b =>
                 {
-                    b.HasOne("EfCoreTest.关系配置.多对多.StudentTeacherRelation", null)
-                        .WithMany()
-                        .HasForeignKey("StudentTeacherRelationsCode")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EfCoreTest.关系配置.多对多.Student", null)
-                        .WithMany()
-                        .HasForeignKey("StudentsCode")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("StudentTeacherRelations");
                 });
 
-            modelBuilder.Entity("StudentTeacherRelationTeacher", b =>
+            modelBuilder.Entity("EfCoreTest.关系配置.多对多.Teacher", b =>
                 {
-                    b.HasOne("EfCoreTest.关系配置.多对多.StudentTeacherRelation", null)
-                        .WithMany()
-                        .HasForeignKey("StudentTeacherRelationsCode")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EfCoreTest.关系配置.多对多.Teacher", null)
-                        .WithMany()
-                        .HasForeignKey("TeachersCode")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("StudentTeacherRelations");
                 });
 
             modelBuilder.Entity("EfCoreTest.关系配置.一对多.Article", b =>
