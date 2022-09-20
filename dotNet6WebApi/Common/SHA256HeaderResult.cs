@@ -28,5 +28,14 @@ namespace Common
             }
             return true;
         }
+        public Dictionary<string, string> getHeadersDic()
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic.Add("Timestamp", Timestamp);
+            dic.Add("Signature", Signature);
+            dic.Add("Nonce", Nonce);
+            dic.Add("ext-app-id", ext_app_id);
+            return dic;
+        }
     }
 }

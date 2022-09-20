@@ -12,10 +12,28 @@ namespace Common
 {
     public static class EfCoreHelper
     {
-
-        public static List<T> ExcuteDataTable<T>(DbContext ctx, string sql, List<SqlParameter> listParam=null)
+        public static DataTable ExcuteDataTable(DbContext ctx, string sql, List<SqlParameter> listParam = null)
         {
-            SqlHelper sqlHelper = new SqlHelper(ctx.Database.GetDbConnection().ConnectionString);
+            SqlHelper sqlHelper = new SqlHelper(ctx);
+
+            if (listParam == null)
+            {
+                return sqlHelper.ExecuteDataTable(sql);
+            }
+            else
+            {
+                SqlParameter[] arr = new SqlParameter[listParam.Count];
+                for (int i = 0; i < listParam.Count; i++)
+                {
+                    arr[i] = listParam[i];
+                }
+                return sqlHelper.ExecuteDataTable(sql, CommandType.Text, arr);
+            }
+
+        }
+        public static List<T> ExcuteDataTable<T>(DbContext ctx, string sql, List<SqlParameter> listParam = null)
+        {
+            SqlHelper sqlHelper = new SqlHelper(ctx);
 
             if (listParam == null)
             {
@@ -68,7 +86,7 @@ namespace Common
         {
             // sort,limit, page 不必考虑防止注入
             string pagesql = string.Format("SELECT TOP {0} * FROM ( SELECT ROW_NUMBER() OVER (ORDER BY {1} ) AS RowNumber,* FROM ( {2} ) temp ) as A  WHERE RowNumber > {0}*({3}-1) ", limit, sort, sql, page);
-            SqlHelper sqlHelper = new SqlHelper(ctx.Database.GetDbConnection().ConnectionString);
+            SqlHelper sqlHelper = new SqlHelper(ctx);
             if (listParam.Count == 0)
             {
                 return sqlHelper.ExecuteDataTable(pagesql);
@@ -94,7 +112,7 @@ namespace Common
         public static int ExecuteCountSql(DbContext ctx, string sql, List<SqlParameter> listParam)
         {
             string sqlcount = string.Format(" select COUNT(1) from ({0})temp ", sql);
-            SqlHelper sqlHelper = new SqlHelper(ctx.Database.GetDbConnection().ConnectionString);
+            SqlHelper sqlHelper = new SqlHelper(ctx);
 
             if (listParam.Count == 0)
             {
@@ -121,7 +139,7 @@ namespace Common
         /// <param name="list"></param>
         public static void BulkInsert<T>(DbContext ctx, string tableName, IList<T> list)
         {
-            SqlHelper sqlHelper = new SqlHelper(ctx.Database.GetDbConnection().ConnectionString);
+            SqlHelper sqlHelper = new SqlHelper(ctx);
             sqlHelper.BulkInsert(tableName, list);
         }
 

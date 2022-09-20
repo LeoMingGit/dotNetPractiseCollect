@@ -13,22 +13,13 @@ namespace Common
     /// </summary>
     public class SqlHelper
     {
-        /// <summary>
-        /// 通过构造函数来实例化连接字符串
-        /// </summary>
-        /// <param name="connectionString"></param>
-        public SqlHelper(string connectionString)
+
+        public SqlHelper(DbContext dbContext)
         {
-            this.connectionString = connectionString;
+            this.dbContext = dbContext;
         }
-        private string connectionString;
-        /// <summary>
-        /// 设置DB访问字符串
-        /// </summary>
-        public string ConnectionSrting
-        {
-            set { connectionString = value; }
-        }
+        private DbContext dbContext;
+
         /// <summary>  
         /// 批量插入  
         /// </summary>  
@@ -38,7 +29,7 @@ namespace Common
         /// <param name="list">要插入大泛型集合</param>  
         public void BulkInsert<T>(string tableName, IList<T> list)
         {
-            SqlConnection conn = new SqlConnection(this.connectionString);
+            SqlConnection conn = (SqlConnection)dbContext.Database.GetDbConnection();
             if (conn.State != ConnectionState.Open)
             {
                 conn.Open(); //打开Connection连接  
@@ -98,7 +89,7 @@ namespace Common
         public DataTable ExecuteDataTable(string sql, CommandType commandtype, SqlParameter[] parameters)
         {
             DataTable data = new DataTable();  //实例化datatable,用于装载查询的结果集
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = (SqlConnection)dbContext.Database.GetDbConnection())
             {
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
@@ -136,7 +127,7 @@ namespace Common
         /// <returns></returns>
         public SqlDataReader ExecuteReader(string sql, CommandType commandType, SqlParameter[] parameters)
         {
-            SqlConnection conn = new SqlConnection(connectionString);
+            SqlConnection conn = (SqlConnection)dbContext.Database.GetDbConnection();
             SqlCommand cmd = new SqlCommand(sql, conn);
             if (parameters != null)
             {
@@ -180,7 +171,7 @@ namespace Common
         /// <returns></returns>
         public object ExecuteScalar(string sql, CommandType commandType, SqlParameter[] parameters)
         {
-            SqlConnection conn = new SqlConnection(connectionString);
+            SqlConnection conn = (SqlConnection)dbContext.Database.GetDbConnection();
             SqlCommand cmd = new SqlCommand(sql, conn);
             cmd.CommandType = commandType;
             if (parameters != null)
@@ -218,7 +209,7 @@ namespace Common
         /// <returns></returns>
         public int ExecuteNonQuery(string sql, CommandType commandType, SqlParameter[] parameters)
         {
-            SqlConnection conn = new SqlConnection(connectionString);
+            SqlConnection conn = (SqlConnection)dbContext.Database.GetDbConnection();
             SqlCommand cmd = new SqlCommand(sql, conn);
             cmd.CommandType = commandType;
             if (parameters != null)
@@ -245,7 +236,7 @@ namespace Common
         public DataTable GetTable(string tableName)
         {
             DataTable table = new DataTable();
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = (SqlConnection)dbContext.Database.GetDbConnection())
             {
                 conn.Open();
                 table = conn.GetSchema(tableName);

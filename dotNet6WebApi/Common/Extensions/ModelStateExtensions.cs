@@ -37,5 +37,19 @@ namespace Common.Extensions
             stringBuilder.AppendLine("\n");
             return stringBuilder.ToString();
         }
+        public static IEnumerable<TResult> LeftJoin<TOuter, TInner, TKey, TResult>(
+    this IEnumerable<TOuter> outer,
+    IEnumerable<TInner> inner,
+    Func<TOuter, TKey> outerKeySelector,
+    Func<TInner, TKey> innerKeySelector,
+    Func<TOuter, TInner, TResult> resultSelector)
+        {
+            return outer
+                .GroupJoin(inner,
+                    outerKeySelector,
+                    innerKeySelector,
+                    (outerObj, inners) => new { outerObj, inners = inners.DefaultIfEmpty() })
+                .SelectMany(a => a.inners.Select(innerObj => resultSelector(a.outerObj, innerObj)));
+        }
     }
 }
