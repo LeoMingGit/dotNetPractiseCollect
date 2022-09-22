@@ -5,6 +5,7 @@ using Model.VOs;
 using System.Text;
 using Common.Extensions;
 using Service.interfaces;
+using Microsoft.AspNetCore.Cors;
 
 namespace OuterWebApi.Controllers
 {
@@ -29,6 +30,8 @@ namespace OuterWebApi.Controllers
             _redis = redis;
             _authenticationService = authenticationService;
         }
+
+        [EnableCors("AnotherPolicy")]
         [HttpPost]
         [Route("GetToken")]
         public ApiResult GetToken([FromBody] GetTokenRequest param)
