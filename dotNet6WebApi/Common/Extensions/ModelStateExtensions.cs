@@ -51,5 +51,17 @@ namespace Common.Extensions
                     (outerObj, inners) => new { outerObj, inners = inners.DefaultIfEmpty() })
                 .SelectMany(a => a.inners.Select(innerObj => resultSelector(a.outerObj, innerObj)));
         }
+
+
+
+
+        public static bool InRange(this DateTime dateToCheck, DateTime startDate, DateTime endDate)
+        {
+            return dateToCheck >= startDate && dateToCheck < endDate;
+        }
+
+
+
+
     }
 }

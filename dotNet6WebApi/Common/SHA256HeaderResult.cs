@@ -16,7 +16,7 @@ namespace Common
 
         public string ext_app_id { get; set; } = "";
 
-        public bool IsNotEmpty()
+        public bool IsNotEmptyAndValid()
         {
             if (string.IsNullOrEmpty(Timestamp)
                 || string.IsNullOrEmpty(Signature) ||
@@ -24,6 +24,11 @@ namespace Common
                 string.IsNullOrEmpty(ext_app_id)
                 )
             {
+                return false;
+            }
+            if (CommonHelper.isValidJavaTimeStamp(Timestamp) == false)
+            {
+                ///无效的时间戳格式
                 return false;
             }
             return true;

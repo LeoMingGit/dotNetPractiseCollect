@@ -9,6 +9,7 @@ using Common;
 using System.Web;
 using System.Text;
 using Microsoft.AspNetCore.Http;
+using Common.Extensions;
 namespace OuterWebApi.Filter
 {
     /// <summary>
@@ -46,10 +47,17 @@ namespace OuterWebApi.Filter
                 Nonce = context.HttpContext.Request.Headers["Nonce"].Count == 0 ? "" : context.HttpContext.Request.Headers["Nonce"].ToString(),
                 ext_app_id = context.HttpContext.Request.Headers["ext-app-id"].Count == 0 ? "" : context.HttpContext.Request.Headers["ext-app-id"].ToString(),
             };
-            if (sHA256HeaderResult.IsNotEmpty() == false)
+            if (sHA256HeaderResult.IsNotEmptyAndValid() == false)
             {
                 string msg = $"请求访问[{url}]失败，无法访问系统资源";
-                context.Result = new JsonResult(new ApiResult((int)ResultCode.FAIL, msg));
+                context.Result = new JsonResult(new ApiResult((int)ResultCode.DENY, msg));
+                return;
+            }
+            DateTime requestDateTime = CommonHelper.JavaTimeStampToDateTime(double.Parse(sHA256HeaderResult.Timestamp));
+            if (requestDateTime.InRange(DateTime.Now.AddMinutes(-15), DateTime.Now.AddMinutes(15)) == false)
+            {
+                string msg = $"请求访问[{url}]失败，无法访问系统资源";
+                context.Result = new JsonResult(new ApiResult((int)ResultCode.DENY, msg));
                 return;
             }
             string bodystr = "";

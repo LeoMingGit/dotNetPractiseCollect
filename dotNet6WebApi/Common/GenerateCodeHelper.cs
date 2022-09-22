@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Common
@@ -30,9 +29,9 @@ namespace Common
                     _sn++;
                 }
                 Thread.Sleep(100);
-                return pre + DateTime.Now.ToString("yyyyMMddHHmmss") + _sn.ToString().PadLeft(3, '0')+ Guid.NewGuid().ToString("N").Substring(0,3);
+                return pre + DateTime.Now.ToString("yyyyMMddHHmmss") + _sn.ToString().PadLeft(3, '0') + Guid.NewGuid().ToString("N").Substring(0, 3);
             }
         }
-    }
 
+    }
 }

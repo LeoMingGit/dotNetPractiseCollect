@@ -17,7 +17,36 @@ namespace Common
         {
             return (long)(DateTime.UtcNow - Jan1st1970).TotalMilliseconds;
         }
+        public static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
+        {
+            // Unix timestamp is seconds past epoch
+            DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            dateTime = dateTime.AddSeconds(unixTimeStamp).ToLocalTime();
+            return dateTime;
+        }
+        public static bool isValidJavaTimeStamp(string javaTimeStampStr)
+        {
+            try
+            {
+                double javaTimeStamp = double.Parse(javaTimeStampStr);
+                DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+                dateTime = dateTime.AddMilliseconds(javaTimeStamp).ToLocalTime();
+                return true;
+            }
+            catch (Exception ex)
+            {
 
+                return false;
+            }
+
+        }
+        public static DateTime JavaTimeStampToDateTime(double javaTimeStamp)
+        {
+            // Java timestamp is milliseconds past epoch
+            DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            dateTime = dateTime.AddMilliseconds(javaTimeStamp).ToLocalTime();
+            return dateTime;
+        }
         /// <summary>
         /// Returns an individual HTTP Header value
         /// </summary>
@@ -52,13 +81,21 @@ namespace Common
 
             foreach (DataColumn column in dr.Table.Columns)
             {
-                foreach (PropertyInfo pro in temp.GetProperties())
+                try
                 {
-                    if (pro.Name == column.ColumnName)
-                        pro.SetValue(obj, dr[column.ColumnName] == DBNull.Value ? "" : dr[column.ColumnName], null);
-                    else
-                        continue;
+                    foreach (PropertyInfo pro in temp.GetProperties())
+                    {
+                        if (pro.Name == column.ColumnName && dr[column.ColumnName] != DBNull.Value)
+                            pro.SetValue(obj, dr[column.ColumnName] == DBNull.Value ? "" : dr[column.ColumnName], null);
+                        else
+                            continue;
+                    }
                 }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
             }
             return obj;
         }

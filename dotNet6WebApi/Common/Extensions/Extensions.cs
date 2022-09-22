@@ -5,27 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common
+namespace Common.Extensions
 {
-    public static class Extensions
+    public static class CommonExtensions
     {
 
-        public static string ToInSql(this List<string> list,string filesName, ref List<SqlParameter> listParam)
-        {
-            if (list.Count == 0) return " ";
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < list.Count; i++)
-            {
-                listParam.Add(  new SqlParameter() { ParameterName = "@" + filesName + i.ToString(), Value = list[0] });
-                if (i == list.Count - 1) {
-                    sb.AppendFormat("{0}", "@" + filesName + i.ToString());
-                }
-                else {
-                    sb.AppendFormat("{0},", "@" + filesName + i.ToString());
-                }
-            }
-            return sb.ToString();
-        }
 
         public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
         {
@@ -34,7 +18,7 @@ namespace Common
                 if (keys.Add(keySelector(element)))
                     yield return element;
         }
-         
+
         public static string ToStringZeroIFNull(this Object obj)
         {
             try
@@ -65,12 +49,12 @@ namespace Common
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static  List<int>  ToListInt(this string obj)
+        public static List<int> ToListInt(this string obj)
         {
             try
             {
-              List<int > lst = obj.Split(',') .Select(p => int.Parse(p.Trim())) .ToList();
-              return lst;
+                List<int> lst = obj.Split(',').Select(p => int.Parse(p.Trim())).ToList();
+                return lst;
             }
             catch (Exception)
             {
@@ -78,7 +62,7 @@ namespace Common
             }
         }
 
-        public  static  bool IsNullOrEmpty (this string obj)
+        public static bool IsNullOrEmpty(this string obj)
         {
             return string.IsNullOrEmpty(obj);
         }

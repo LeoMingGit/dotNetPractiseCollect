@@ -13,6 +13,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using Common.Extensions;
 namespace Common
 {
     public static class ExcelHelper
@@ -25,7 +26,7 @@ namespace Common
             filename = filename + DateTime.Now.ToString("yyyymmddhhmmss") + ".xlsx";
             result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
             result.Content.Headers.ContentDisposition.FileName = HttpUtility.UrlEncode(filename);
-            System.Web.HttpContext.Current.Response.Headers.Add("Access-Control-Expose-Headers", "Content-Disposition");
+           // System.Web.HttpContext.Current.Response.Headers.Add("Access-Control-Expose-Headers", "Content-Disposition");
             return result;
         }
         /// <summary>
