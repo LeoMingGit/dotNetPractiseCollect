@@ -45,7 +45,7 @@ File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
    --- End of inner exception stack trace ---
 2022-09-16 16:54:55.8459 Info Adding target AsyncTargetWrapper(Name=console)
 2022-09-16 16:54:55.8459 Info Adding target AsyncTargetWrapper(Name=blackhole)
-2022-09-16 16:54:55.8902 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\代码\MaPai\CSI\OuterWebApi\OuterWebApi\bin\Debug\net6.0\NLog.config
+2022-09-16 16:54:55.8902 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\代码\MaPai\CSI\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
 2022-09-16 16:54:55.9210 Info Configuration initialized.
 2022-09-16 16:54:55.9579 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
 2022-09-16 17:04:31.8476 Info Message Template Auto Format enabled
@@ -95,7 +95,7 @@ File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
    --- End of inner exception stack trace ---
 2022-09-16 17:04:31.9847 Info Adding target AsyncTargetWrapper(Name=console)
 2022-09-16 17:04:31.9847 Info Adding target AsyncTargetWrapper(Name=blackhole)
-2022-09-16 17:04:32.0413 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\代码\MaPai\CSI\OuterWebApi\OuterWebApi\bin\Debug\net6.0\NLog.config
+2022-09-16 17:04:32.0413 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\代码\MaPai\CSI\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
 2022-09-16 17:04:32.0795 Info Configuration initialized.
 2022-09-16 17:04:32.1095 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
 2022-09-16 17:15:50.1071 Info Message Template Auto Format enabled
@@ -145,7 +145,7 @@ File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
    --- End of inner exception stack trace ---
 2022-09-16 17:15:50.2849 Info Adding target AsyncTargetWrapper(Name=console)
 2022-09-16 17:15:50.2849 Info Adding target AsyncTargetWrapper(Name=blackhole)
-2022-09-16 17:15:50.3310 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\代码\MaPai\CSI\OuterWebApi\OuterWebApi\bin\Debug\net6.0\NLog.config
+2022-09-16 17:15:50.3310 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\代码\MaPai\CSI\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
 2022-09-16 17:15:50.3587 Info Configuration initialized.
 2022-09-16 17:15:50.3925 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
 2022-09-16 17:16:21.9420 Info Message Template Auto Format enabled
@@ -195,7 +195,7 @@ File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
    --- End of inner exception stack trace ---
 2022-09-16 17:16:22.0934 Info Adding target AsyncTargetWrapper(Name=console)
 2022-09-16 17:16:22.0934 Info Adding target AsyncTargetWrapper(Name=blackhole)
-2022-09-16 17:16:22.1354 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\代码\MaPai\CSI\OuterWebApi\OuterWebApi\bin\Debug\net6.0\NLog.config
+2022-09-16 17:16:22.1354 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\代码\MaPai\CSI\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
 2022-09-16 17:16:22.1599 Info Configuration initialized.
 2022-09-16 17:16:22.1730 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
 2022-09-16 17:17:31.2355 Info Message Template Auto Format enabled
@@ -245,7 +245,7 @@ File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
    --- End of inner exception stack trace ---
 2022-09-16 17:17:31.3842 Info Adding target AsyncTargetWrapper(Name=console)
 2022-09-16 17:17:31.3842 Info Adding target AsyncTargetWrapper(Name=blackhole)
-2022-09-16 17:17:31.4284 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\代码\MaPai\CSI\OuterWebApi\OuterWebApi\bin\Debug\net6.0\NLog.config
+2022-09-16 17:17:31.4284 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\代码\MaPai\CSI\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
 2022-09-16 17:17:31.4546 Info Configuration initialized.
 2022-09-16 17:17:31.4828 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
 2022-09-16 17:20:10.9368 Info Message Template Auto Format enabled
@@ -295,7 +295,7 @@ File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
    --- End of inner exception stack trace ---
 2022-09-16 17:20:11.1353 Info Adding target AsyncTargetWrapper(Name=console)
 2022-09-16 17:20:11.1353 Info Adding target AsyncTargetWrapper(Name=blackhole)
-2022-09-16 17:20:11.1827 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\代码\MaPai\CSI\OuterWebApi\OuterWebApi\bin\Debug\net6.0\NLog.config
+2022-09-16 17:20:11.1827 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\代码\MaPai\CSI\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
 2022-09-16 17:20:11.2085 Info Configuration initialized.
 2022-09-16 17:20:11.2402 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
 2022-09-16 17:42:26.3478 Info Message Template Auto Format enabled
@@ -345,7 +345,7 @@ File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
    --- End of inner exception stack trace ---
 2022-09-16 17:42:26.5389 Info Adding target AsyncTargetWrapper(Name=console)
 2022-09-16 17:42:26.5389 Info Adding target AsyncTargetWrapper(Name=blackhole)
-2022-09-16 17:42:26.5833 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\代码\MaPai\CSI\OuterWebApi\OuterWebApi\bin\Debug\net6.0\NLog.config
+2022-09-16 17:42:26.5833 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\代码\MaPai\CSI\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
 2022-09-16 17:42:26.6076 Info Configuration initialized.
 2022-09-16 17:42:26.6397 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
 2022-09-16 17:47:06.5729 Info Message Template Auto Format enabled
@@ -395,7 +395,7 @@ File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
    --- End of inner exception stack trace ---
 2022-09-16 17:47:06.7651 Info Adding target AsyncTargetWrapper(Name=console)
 2022-09-16 17:47:06.7651 Info Adding target AsyncTargetWrapper(Name=blackhole)
-2022-09-16 17:47:06.8104 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\代码\MaPai\CSI\OuterWebApi\OuterWebApi\bin\Debug\net6.0\NLog.config
+2022-09-16 17:47:06.8104 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\代码\MaPai\CSI\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
 2022-09-16 17:47:06.8347 Info Configuration initialized.
 2022-09-16 17:47:06.8686 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
 2022-09-16 17:49:09.6225 Info Message Template Auto Format enabled
@@ -445,7 +445,7 @@ File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
    --- End of inner exception stack trace ---
 2022-09-16 17:49:09.7970 Info Adding target AsyncTargetWrapper(Name=console)
 2022-09-16 17:49:09.7970 Info Adding target AsyncTargetWrapper(Name=blackhole)
-2022-09-16 17:49:09.8407 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\代码\MaPai\CSI\OuterWebApi\OuterWebApi\bin\Debug\net6.0\NLog.config
+2022-09-16 17:49:09.8407 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\代码\MaPai\CSI\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
 2022-09-16 17:49:09.8688 Info Configuration initialized.
 2022-09-16 17:49:09.8932 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
 2022-09-16 19:23:34.2441 Info Message Template Auto Format enabled
@@ -495,7 +495,7 @@ File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
    --- End of inner exception stack trace ---
 2022-09-16 19:23:34.6027 Info Adding target AsyncTargetWrapper(Name=console)
 2022-09-16 19:23:34.6027 Info Adding target AsyncTargetWrapper(Name=blackhole)
-2022-09-16 19:23:34.6882 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\CODE\dotNetPractise2022Collect\OuterWebApi\OuterWebApi\OuterWebApi\bin\Debug\net6.0\NLog.config
+2022-09-16 19:23:34.6882 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\CODE\dotNetPractise2022Collect\dotNet6WebApi\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
 2022-09-16 19:23:34.7260 Info Configuration initialized.
 2022-09-16 19:23:34.7612 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
 2022-09-16 19:29:30.8258 Info Message Template Auto Format enabled
@@ -545,7 +545,7 @@ File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
    --- End of inner exception stack trace ---
 2022-09-16 19:29:31.1431 Info Adding target AsyncTargetWrapper(Name=console)
 2022-09-16 19:29:31.1431 Info Adding target AsyncTargetWrapper(Name=blackhole)
-2022-09-16 19:29:31.2020 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\CODE\dotNetPractise2022Collect\OuterWebApi\OuterWebApi\OuterWebApi\bin\Debug\net6.0\NLog.config
+2022-09-16 19:29:31.2020 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\CODE\dotNetPractise2022Collect\dotNet6WebApi\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
 2022-09-16 19:29:31.2338 Info Configuration initialized.
 2022-09-16 19:29:31.2896 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
 2022-09-16 19:31:10.5024 Info Message Template Auto Format enabled
@@ -595,7 +595,7 @@ File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
    --- End of inner exception stack trace ---
 2022-09-16 19:31:10.7735 Info Adding target AsyncTargetWrapper(Name=console)
 2022-09-16 19:31:10.7735 Info Adding target AsyncTargetWrapper(Name=blackhole)
-2022-09-16 19:31:10.8467 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\CODE\dotNetPractise2022Collect\OuterWebApi\OuterWebApi\OuterWebApi\bin\Debug\net6.0\NLog.config
+2022-09-16 19:31:10.8467 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\CODE\dotNetPractise2022Collect\dotNet6WebApi\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
 2022-09-16 19:31:10.8845 Info Configuration initialized.
 2022-09-16 19:31:10.9039 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
 2022-09-16 19:33:38.8991 Info Message Template Auto Format enabled
@@ -645,7 +645,7 @@ File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
    --- End of inner exception stack trace ---
 2022-09-16 19:33:39.4080 Info Adding target AsyncTargetWrapper(Name=console)
 2022-09-16 19:33:39.4080 Info Adding target AsyncTargetWrapper(Name=blackhole)
-2022-09-16 19:33:39.4552 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\CODE\dotNetPractise2022Collect\OuterWebApi\OuterWebApi\OuterWebApi\bin\Debug\net6.0\NLog.config
+2022-09-16 19:33:39.4552 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\CODE\dotNetPractise2022Collect\dotNet6WebApi\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
 2022-09-16 19:33:39.4846 Info Configuration initialized.
 2022-09-16 19:33:39.5286 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
 2022-09-16 19:35:43.6413 Info Message Template Auto Format enabled
@@ -695,7 +695,7 @@ File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
    --- End of inner exception stack trace ---
 2022-09-16 19:35:43.8435 Info Adding target AsyncTargetWrapper(Name=console)
 2022-09-16 19:35:43.8460 Info Adding target AsyncTargetWrapper(Name=blackhole)
-2022-09-16 19:35:43.9026 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\CODE\dotNetPractise2022Collect\OuterWebApi\OuterWebApi\OuterWebApi\bin\Debug\net6.0\NLog.config
+2022-09-16 19:35:43.9026 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\CODE\dotNetPractise2022Collect\dotNet6WebApi\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
 2022-09-16 19:35:43.9382 Info Configuration initialized.
 2022-09-16 19:35:43.9680 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
 2022-09-16 19:38:52.1637 Info Message Template Auto Format enabled
@@ -745,7 +745,7 @@ File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
    --- End of inner exception stack trace ---
 2022-09-16 19:38:52.4275 Info Adding target AsyncTargetWrapper(Name=console)
 2022-09-16 19:38:52.4275 Info Adding target AsyncTargetWrapper(Name=blackhole)
-2022-09-16 19:38:52.4943 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\CODE\dotNetPractise2022Collect\OuterWebApi\OuterWebApi\OuterWebApi\bin\Debug\net6.0\NLog.config
+2022-09-16 19:38:52.4943 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\CODE\dotNetPractise2022Collect\dotNet6WebApi\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
 2022-09-16 19:38:52.5432 Info Configuration initialized.
 2022-09-16 19:38:52.5694 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
 2022-09-16 19:41:41.9646 Info Message Template Auto Format enabled
@@ -795,7 +795,7 @@ File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
    --- End of inner exception stack trace ---
 2022-09-16 19:41:42.6753 Info Adding target AsyncTargetWrapper(Name=console)
 2022-09-16 19:41:42.6753 Info Adding target AsyncTargetWrapper(Name=blackhole)
-2022-09-16 19:41:42.7596 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\CODE\dotNetPractise2022Collect\OuterWebApi\OuterWebApi\OuterWebApi\bin\Debug\net6.0\NLog.config
+2022-09-16 19:41:42.7596 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\CODE\dotNetPractise2022Collect\dotNet6WebApi\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
 2022-09-16 19:41:42.8158 Info Configuration initialized.
 2022-09-16 19:41:42.8380 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
 2022-09-16 19:44:11.7197 Info Message Template Auto Format enabled
@@ -845,7 +845,7 @@ File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
    --- End of inner exception stack trace ---
 2022-09-16 19:44:11.9089 Info Adding target AsyncTargetWrapper(Name=console)
 2022-09-16 19:44:11.9089 Info Adding target AsyncTargetWrapper(Name=blackhole)
-2022-09-16 19:44:11.9650 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\CODE\dotNetPractise2022Collect\OuterWebApi\OuterWebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
+2022-09-16 19:44:11.9650 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\CODE\dotNetPractise2022Collect\dotNet6WebApi\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
 2022-09-16 19:44:11.9997 Info Configuration initialized.
 2022-09-16 19:44:12.0385 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
 2022-09-16 19:47:10.3118 Info Message Template Auto Format enabled
@@ -895,7 +895,7 @@ File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
    --- End of inner exception stack trace ---
 2022-09-16 19:47:10.6989 Info Adding target AsyncTargetWrapper(Name=console)
 2022-09-16 19:47:10.6989 Info Adding target AsyncTargetWrapper(Name=blackhole)
-2022-09-16 19:47:10.8082 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\CODE\dotNetPractise2022Collect\OuterWebApi\OuterWebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
+2022-09-16 19:47:10.8082 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\CODE\dotNetPractise2022Collect\dotNet6WebApi\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
 2022-09-16 19:47:10.9063 Info Configuration initialized.
 2022-09-16 19:47:10.9681 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
 2022-09-16 19:51:49.5375 Info Message Template Auto Format enabled
@@ -945,7 +945,7 @@ File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
    --- End of inner exception stack trace ---
 2022-09-16 19:51:49.7358 Info Adding target AsyncTargetWrapper(Name=console)
 2022-09-16 19:51:49.7358 Info Adding target AsyncTargetWrapper(Name=blackhole)
-2022-09-16 19:51:49.8287 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\CODE\dotNetPractise2022Collect\OuterWebApi\OuterWebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
+2022-09-16 19:51:49.8287 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=F:\CODE\dotNetPractise2022Collect\dotNet6WebApi\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
 2022-09-16 19:51:49.8718 Info Configuration initialized.
 2022-09-16 19:51:49.8842 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
 2022-09-16 19:54:09.6870 Info Message Template Auto Format enabled

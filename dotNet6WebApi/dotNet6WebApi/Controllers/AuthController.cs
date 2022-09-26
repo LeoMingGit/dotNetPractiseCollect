@@ -7,7 +7,7 @@ using Common.Extensions;
 using Service.interfaces;
 using Microsoft.AspNetCore.Cors;
 
-namespace OuterWebApi.Controllers
+namespace dotNet6WebApi.Controllers
 {
 
     /// <summary>

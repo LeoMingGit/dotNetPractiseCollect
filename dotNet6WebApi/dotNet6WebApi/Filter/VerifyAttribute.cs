@@ -10,7 +10,7 @@ using System.Web;
 using System.Text;
 using Microsoft.AspNetCore.Http;
 using Common.Extensions;
-namespace OuterWebApi.Filter
+namespace dotNet6WebApi.Filter
 {
     /// <summary>
     /// 授权校验访问
