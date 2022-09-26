@@ -9,6 +9,7 @@ using Model.Base;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using Newtonsoft.Json;
+using dotNet6WebApi.Filter;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -77,6 +78,7 @@ builder.Services.AddSwaggerGen(c =>
         Type = SecuritySchemeType.ApiKey,
     };
     c.AddSecurityDefinition("Authorization", scheme);
+    c.OperationFilter<AddRequiredHeaderParameter>();
     var requirement = new OpenApiSecurityRequirement();
     requirement[scheme] = new List<string>();
     c.AddSecurityRequirement(requirement);
