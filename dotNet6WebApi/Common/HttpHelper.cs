@@ -281,7 +281,13 @@ namespace Common
         {
             return true; //总是接受  
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Url"></param>
+        /// <param name="headers"></param>
+        /// <param name="jsondata"></param>
+        /// <returns></returns>
         public static string PostJsonRequest(string Url, Dictionary<string, string> headers, string jsondata)
         {
             string RR = "";
@@ -301,18 +307,37 @@ namespace Common
             Stream dataStream = request.GetRequestStream();  //得到请求流
             dataStream.Write(byteArray, 0, byteArray.Length); //将数据写入请求流
             dataStream.Close();         //关闭流对象
-            //
-            WebResponse response = request.GetResponse();  //得到的响应
-            //Console.WriteLine(((HttpWebResponse)response).StatusDescription); //显示状态
-            dataStream = response.GetResponseStream();   //获取服务器返回的流
-            //StreamReader php = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("UTF-8"));
-            StreamReader reader = new StreamReader(dataStream, Encoding.UTF8);//打开流   //.GetEncoding("UTF-8")
-            //
-            RR = reader.ReadToEnd();//读取内容
-            //
-            reader.Close();
-            dataStream.Close();
-            response.Close();
+                                        //
+                                        //发送请求并获取相应回应数据       
+                                        //Console.WriteLine(((HttpWebResponse)response).StatusDescription); //显示状态
+            try
+            {
+                WebResponse response = request.GetResponse();  //得到的响应
+
+                dataStream = response.GetResponseStream();   //获取服务器返回的流
+                                                             //StreamReader php = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("UTF-8"));
+                StreamReader reader = new StreamReader(dataStream, Encoding.UTF8);//打开流   //.GetEncoding("UTF-8")
+                                                                                  //
+                RR = reader.ReadToEnd();//读取内容
+                                        //
+                reader.Close();
+                dataStream.Close();
+                response.Close();
+            }
+            catch (WebException ex)
+            {
+                WebResponse response = (HttpWebResponse)ex.Response;
+                dataStream = response.GetResponseStream();   //获取服务器返回的流
+                                                             //StreamReader php = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("UTF-8"));
+                StreamReader reader = new StreamReader(dataStream, Encoding.UTF8);//打开流   //.GetEncoding("UTF-8")
+                                                                                  //
+                RR = reader.ReadToEnd();//读取内容
+                                        //
+                reader.Close();
+                dataStream.Close();
+                response.Close();
+            }
+
             //
             return RR;
         }
