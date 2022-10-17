@@ -7,6 +7,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+
 namespace Common
 {
     public static class CommonHelper
@@ -100,5 +102,17 @@ namespace Common
             return obj;
         }
         #endregion
+        public static TTarget CopyToProperties<TSource, TTarget>(TSource sourceItem)
+        {
+            if (null == sourceItem)
+            {
+                return default(TTarget);
+            }
+
+            var deserializeSettings = new JsonSerializerSettings { ObjectCreationHandling = ObjectCreationHandling.Replace, };
+            var serializedObject = Newtonsoft.Json.JsonConvert.SerializeObject(sourceItem, deserializeSettings);
+
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<TTarget>(serializedObject);
+        }
     }
 }
