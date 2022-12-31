@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "sDarGrEPYH2ThSzB9Kd2YVFIEsdilRdfJBa3xAOSUUgNgrXl2v0sdRdRetTva0tmj5Y1qduK/d/a47hCvNY/VQ==",
+  "success": true,
+  "projectFilePath": "F:\\CODE\\dotNetPractise2022Collect\\UtilityDemo\\UtilityDemo\\UtilityDemo.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Administrator\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}
