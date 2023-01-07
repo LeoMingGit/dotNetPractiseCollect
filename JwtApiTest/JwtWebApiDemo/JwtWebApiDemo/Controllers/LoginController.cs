@@ -52,9 +52,9 @@ namespace JwtWebApiDemo.Controllers
             if(login_user_obj==null) return Forbid();
             //to do :发放令牌
             var claims = new List<Claim>();
-            claims.Add(new Claim(ClaimTypes.NameIdentifier, "userid"));//写死
-            claims.Add(new Claim(ClaimTypes.Name, "UserName"));
-            claims.Add(new Claim(ClaimTypes.Role, "role"));
+            claims.Add(new Claim(ClaimTypes.Name, login_user_obj.name));
+            claims.Add(new Claim(ClaimTypes.NameIdentifier, login_user_obj.user_id.ToString()));
+            claims.Add(new Claim(ClaimTypes.Role,login_user_obj.role.ToString()));
             string jwtToken = BuildToken(claims, jwtOptions.Value);
             return Ok(jwtToken);
         }
@@ -71,6 +71,8 @@ namespace JwtWebApiDemo.Controllers
             var base64Secret = UrlBase64.Encode(key);
             return base64Secret;
         }
+     
+
         private static string BuildToken(IEnumerable<Claim> claims, JWTTokenOptions options)
         {
             DateTime expires = DateTime.Now.AddSeconds(options.ExpireSeconds);
