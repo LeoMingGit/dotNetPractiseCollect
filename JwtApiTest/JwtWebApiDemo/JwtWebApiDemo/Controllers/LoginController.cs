@@ -1,4 +1,5 @@
 ﻿using JwtWebApiDemo.Common;
+using JwtWebApiDemo.Filters;
 using JwtWebApiDemo.Logic;
 using JwtWebApiDemo.Model;
 using Microsoft.AspNetCore.Authorization;
@@ -29,7 +30,7 @@ namespace JwtWebApiDemo.Controllers
             _userService = userService;
         }
 
-
+        [VerifyAttribute]
         [HttpGet]
         [Route("GetHelloMsg")]
         public ActionResult<string> GetHelloMsg()

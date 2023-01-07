@@ -30,9 +30,9 @@ namespace JwtWebApiDemo.Filters
 
             string url = context.HttpContext.Request.Path;
 
-            //使用jwt token校验2020-11-21
             var info = context.HttpContext.Request.Headers["Authorization"].Count == 0 ? "" : context.HttpContext.Request.Headers["Authorization"].ToString();
-            var isAuthed = context.HttpContext.User.Identity?.IsAuthenticated;
+            var identity = context.HttpContext.User.Identity;
+            var isAuthed = identity?.IsAuthenticated;
 
             if (string.IsNullOrEmpty(info) ||isAuthed==false)
             {
