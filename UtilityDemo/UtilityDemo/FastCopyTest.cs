@@ -37,8 +37,12 @@ namespace UtilityDemo
             }
             SerializeService serializeService = new SerializeService();
             var json = serializeService.SerializeObject(courseInfos);
-
             Console.WriteLine(json);
+            Console.WriteLine("\n");
+            var courseInfos2 = FastCopy.CopyToProperties<List<AdvancedCourseInfo>, List<CourseInfo>>(advancedCourseInfo);
+            var json2 = serializeService.SerializeObject(courseInfos2);
+            Console.WriteLine(json2);
+
 
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -125,6 +126,18 @@ namespace SqlSugar
                 }
             }
             return result;
+        }
+        public static TTarget CopyToProperties<TSource, TTarget>(TSource sourceItem)
+        {
+            if (null == sourceItem)
+            {
+                return default(TTarget);
+            }
+
+            var deserializeSettings = new JsonSerializerSettings { ObjectCreationHandling = ObjectCreationHandling.Replace, };
+            var serializedObject = Newtonsoft.Json.JsonConvert.SerializeObject(sourceItem, deserializeSettings);
+
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<TTarget>(serializedObject);
         }
     }
 }
