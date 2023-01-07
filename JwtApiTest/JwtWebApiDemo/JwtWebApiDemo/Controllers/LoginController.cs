@@ -1,10 +1,12 @@
 ﻿using JwtWebApiDemo.Common;
+using JwtWebApiDemo.Logic;
 using JwtWebApiDemo.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using SqlSugar;
 using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -19,13 +21,21 @@ namespace JwtWebApiDemo.Controllers
     {
         private readonly IConfiguration _configuration;
 
-        public LoginController(IConfiguration configuration)
+        private readonly IUserService _userService;
+
+        public LoginController(IConfiguration configuration,IUserService userService)
         {
             _configuration = configuration;
-
+            _userService = userService;
         }
 
 
+        [HttpGet]
+        [Route("GetHelloMsg")]
+        public ActionResult<string> GetHelloMsg()
+        {
+            return "hello";
+        }
 
         [AllowAnonymous]
         [HttpPost("login")]
@@ -38,19 +48,15 @@ namespace JwtWebApiDemo.Controllers
             }
             //先要在数据库中根据用户的名称和密码比一下，如果匹配上了，则发放令牌
             // 此处省略 ...
-
-            if (CheckLogin(loginDto.UserId,loginDto.PassWord))
-            {
-                //to do :发放令牌
-                var claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.NameIdentifier, "userid"));//写死
-                claims.Add(new Claim(ClaimTypes.Name, "UserName"));
-                claims.Add(new Claim(ClaimTypes.Role, "role"));
-                string jwtToken = BuildToken(claims, jwtOptions.Value);
-                return Ok(jwtToken);
-            }
-            return Forbid();
-
+            var  login_user_obj = _userService.GetUser(loginDto.UserId, loginDto.PassWord);
+            if(login_user_obj==null) return Forbid();
+            //to do :发放令牌
+            var claims = new List<Claim>();
+            claims.Add(new Claim(ClaimTypes.NameIdentifier, "userid"));//写死
+            claims.Add(new Claim(ClaimTypes.Name, "UserName"));
+            claims.Add(new Claim(ClaimTypes.Role, "role"));
+            string jwtToken = BuildToken(claims, jwtOptions.Value);
+            return Ok(jwtToken);
         }
         /// <summary>
         /// 生成secretkey
@@ -75,11 +81,6 @@ namespace JwtWebApiDemo.Controllers
             var tokenDescriptor = new JwtSecurityToken(expires: expires,
                 signingCredentials: credentials, claims: claims);
             return new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
-        }
-
-        private  bool  CheckLogin(string usr,string pwd)
-        {
-            return true;
         }
        
     }

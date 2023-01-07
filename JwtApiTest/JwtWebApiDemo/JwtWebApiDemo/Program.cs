@@ -1,5 +1,11 @@
 using JwtWebApiDemo.Config;
+using JwtWebApiDemo.Logic;
+using JwtWebApiDemo.Model;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
+
 builder.Services.AddSwaggerGen(c =>
 {
     var scheme = new OpenApiSecurityScheme()
@@ -29,8 +35,46 @@ builder.Services.AddSwaggerGen(c =>
     requirement[scheme] = new List<string>();
     c.AddSecurityRequirement(requirement);
 });
-builder.Register();
 
+#region  jwt配置
+
+builder.Services.Configure<JWTTokenOptions>(builder.Configuration.GetSection("JWT"));
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+.AddJwtBearer(x =>
+{
+    var jwtOpt = builder.Configuration.GetSection("JWT").Get<JWTTokenOptions>();
+    byte[] keyBytes = Encoding.UTF8.GetBytes(jwtOpt.SigningKey);
+    var secKey = new SymmetricSecurityKey(keyBytes);
+    x.TokenValidationParameters = new()
+    {
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = secKey
+    };
+});
+
+#endregion
+
+#region  业务service的注入
+
+builder.Services.AddTransient<IUserService, UserServiceImpl>();
+
+#endregion
+
+
+//添加跨域策略
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", opt => opt.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().WithExposedHeaders("X-Pagination"));
+});
+//设置Json返回的日期格式
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+    options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
+});
 var app = builder.Build();//上面配置完成 ，最后一步Build,否则会报错
 
 // Configure the HTTP request pipeline.
