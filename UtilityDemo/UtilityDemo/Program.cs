@@ -2,7 +2,7 @@
 
 
 using UtilityDemo;
-
+ZipTest.Test();
 FastCopyTest.Test();
 Console.WriteLine("Hello, World!");
 

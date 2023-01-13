@@ -8,9 +8,12 @@ namespace UtilityDemo
 {
     public class ZipTest
     {
-        public void Test()
+        public  static void Test()
         {
-            ZipHelper.ZipDirectory("", "", "", false);
+            string resource_path=PathHelper.GetCountParentDirectory( PathHelper.GetCurrentExcuteAppPath(),3);
+            string source_path = PathHelper.PathCombine(resource_path, @"Resource\yashuo_test");
+            string target_zip_path = PathHelper.GetParentDirectory(source_path);
+            ZipHelper.ZipDirectory(source_path, target_zip_path,"yasuo_test", true);//加密压缩
         }
     }
 }

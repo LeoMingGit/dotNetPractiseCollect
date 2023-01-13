@@ -12,4 +12,17 @@
     <PackageReference Include="SharpZipLib" Version="1.4.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Resource\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Resource\yashuo_test\新建 RTF 文档.rtf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resource\yashuo_test\新建文本文档.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
