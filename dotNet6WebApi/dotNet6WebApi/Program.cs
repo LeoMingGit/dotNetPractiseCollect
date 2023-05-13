@@ -83,20 +83,10 @@ builder.Services.AddSwaggerGen(c =>
     requirement[scheme] = new List<string>();
     c.AddSecurityRequirement(requirement);
 });
-//https://www.cnblogs.com/kzwrcom/p/11414048.html
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AnotherPolicy", builder =>
-    {
-        builder.AllowAnyHeader()
-               .AllowAnyMethod()
-               .AllowAnyOrigin()
-               .AllowCredentials()
-               .WithExposedHeaders("Access-Control-Expose-Headers"); // params string[]
-    });
-});
+
 
 var app = builder.Build();//上面配置完成 ，最后一步Build,否则会报错
+app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

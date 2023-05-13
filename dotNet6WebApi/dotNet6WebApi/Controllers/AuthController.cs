@@ -31,7 +31,6 @@ namespace dotNet6WebApi.Controllers
             _authenticationService = authenticationService;
         }
 
-        [EnableCors("AnotherPolicy")]
         [HttpPost]
         [Route("GetToken")]
         public ApiResult GetToken([FromBody] GetTokenRequest param)

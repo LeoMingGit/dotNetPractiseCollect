@@ -1048,3 +1048,253 @@ File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
 2022-09-22 14:01:28.7649 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=H:\dotNetPractise2022Collect\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
 2022-09-22 14:01:28.7914 Info Configuration initialized.
 2022-09-22 14:01:28.8344 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
+2023-05-13 11:23:02.6445 Info Message Template Auto Format enabled
+2023-05-13 11:23:02.6731 Info Loading assembly: NLog.Web.AspNetCore
+2023-05-13 11:23:02.6949 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Error loading extensions: NLog.Web.AspNetCore
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'. 系统找不到指定的文件。
+File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
+   at System.Reflection.RuntimeAssembly.InternalLoad(ObjectHandleOnStack assemblyName, ObjectHandleOnStack requestingAssembly, StackCrawlMarkHandle stackMark, Boolean throwOnFileNotFound, ObjectHandleOnStack assemblyLoadContext, ObjectHandleOnStack retAssembly)
+   at System.Reflection.RuntimeAssembly.InternalLoad(AssemblyName assemblyName, RuntimeAssembly requestingAssembly, StackCrawlMark& stackMark, Boolean throwOnFileNotFound, AssemblyLoadContext assemblyLoadContext)
+   at System.Reflection.Assembly.Load(String assemblyString)
+   at NLog.Internal.AssemblyHelpers.LoadFromName(String assemblyName)
+   at NLog.Config.LoggingConfigurationParser.ParseExtensionWithAssembly(String assemblyName, String prefix)
+   --- End of inner exception stack trace ---
+2023-05-13 11:23:02.9089 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-iP
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-iP'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:23:02.9164 Warn Error has been raised. Exception: NLog.NLogConfigurationException: ${aspnet-request-iP} cannot assign unknown property 'CheckForwardedForHeader='
+2023-05-13 11:23:02.9164 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-url
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-url'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:23:02.9536 Info Adding target AsyncTargetWrapper(Name=allLogfile)
+2023-05-13 11:23:02.9536 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-iP
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-iP'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:23:02.9536 Warn Error has been raised. Exception: NLog.NLogConfigurationException: ${aspnet-request-iP} cannot assign unknown property 'CheckForwardedForHeader='
+2023-05-13 11:23:02.9536 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-url
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-url'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:23:02.9536 Info Adding target AsyncTargetWrapper(Name=dayLogFile)
+2023-05-13 11:23:02.9694 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-iP
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-iP'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:23:02.9694 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-url
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-url'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:23:02.9694 Info Adding target AsyncTargetWrapper(Name=console)
+2023-05-13 11:23:02.9694 Info Adding target AsyncTargetWrapper(Name=blackhole)
+2023-05-13 11:23:03.0418 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=E:\代码练习\dotNetPractiseCollect\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
+2023-05-13 11:23:03.0828 Info Configuration initialized.
+2023-05-13 11:23:03.2253 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
+2023-05-13 11:27:51.9590 Info Message Template Auto Format enabled
+2023-05-13 11:27:51.9590 Info Loading assembly: NLog.Web.AspNetCore
+2023-05-13 11:27:51.9785 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Error loading extensions: NLog.Web.AspNetCore
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'. 系统找不到指定的文件。
+File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
+   at System.Reflection.RuntimeAssembly.InternalLoad(ObjectHandleOnStack assemblyName, ObjectHandleOnStack requestingAssembly, StackCrawlMarkHandle stackMark, Boolean throwOnFileNotFound, ObjectHandleOnStack assemblyLoadContext, ObjectHandleOnStack retAssembly)
+   at System.Reflection.RuntimeAssembly.InternalLoad(AssemblyName assemblyName, RuntimeAssembly requestingAssembly, StackCrawlMark& stackMark, Boolean throwOnFileNotFound, AssemblyLoadContext assemblyLoadContext)
+   at System.Reflection.Assembly.Load(String assemblyString)
+   at NLog.Internal.AssemblyHelpers.LoadFromName(String assemblyName)
+   at NLog.Config.LoggingConfigurationParser.ParseExtensionWithAssembly(String assemblyName, String prefix)
+   --- End of inner exception stack trace ---
+2023-05-13 11:27:52.1343 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-iP
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-iP'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:27:52.1343 Warn Error has been raised. Exception: NLog.NLogConfigurationException: ${aspnet-request-iP} cannot assign unknown property 'CheckForwardedForHeader='
+2023-05-13 11:27:52.1343 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-url
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-url'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:27:52.1672 Info Adding target AsyncTargetWrapper(Name=allLogfile)
+2023-05-13 11:27:52.1672 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-iP
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-iP'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:27:52.1672 Warn Error has been raised. Exception: NLog.NLogConfigurationException: ${aspnet-request-iP} cannot assign unknown property 'CheckForwardedForHeader='
+2023-05-13 11:27:52.1672 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-url
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-url'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:27:52.1672 Info Adding target AsyncTargetWrapper(Name=dayLogFile)
+2023-05-13 11:27:52.1877 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-iP
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-iP'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:27:52.1877 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-url
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-url'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:27:52.1877 Info Adding target AsyncTargetWrapper(Name=console)
+2023-05-13 11:27:52.1877 Info Adding target AsyncTargetWrapper(Name=blackhole)
+2023-05-13 11:27:52.2580 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=E:\代码练习\dotNetPractiseCollect\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
+2023-05-13 11:27:52.2972 Info Configuration initialized.
+2023-05-13 11:27:52.4695 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
+2023-05-13 11:29:35.5198 Info Message Template Auto Format enabled
+2023-05-13 11:29:35.5405 Info Loading assembly: NLog.Web.AspNetCore
+2023-05-13 11:29:35.5545 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Error loading extensions: NLog.Web.AspNetCore
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'. 系统找不到指定的文件。
+File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
+   at System.Reflection.RuntimeAssembly.InternalLoad(ObjectHandleOnStack assemblyName, ObjectHandleOnStack requestingAssembly, StackCrawlMarkHandle stackMark, Boolean throwOnFileNotFound, ObjectHandleOnStack assemblyLoadContext, ObjectHandleOnStack retAssembly)
+   at System.Reflection.RuntimeAssembly.InternalLoad(AssemblyName assemblyName, RuntimeAssembly requestingAssembly, StackCrawlMark& stackMark, Boolean throwOnFileNotFound, AssemblyLoadContext assemblyLoadContext)
+   at System.Reflection.Assembly.Load(String assemblyString)
+   at NLog.Internal.AssemblyHelpers.LoadFromName(String assemblyName)
+   at NLog.Config.LoggingConfigurationParser.ParseExtensionWithAssembly(String assemblyName, String prefix)
+   --- End of inner exception stack trace ---
+2023-05-13 11:29:35.7384 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-iP
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-iP'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:29:35.7384 Warn Error has been raised. Exception: NLog.NLogConfigurationException: ${aspnet-request-iP} cannot assign unknown property 'CheckForwardedForHeader='
+2023-05-13 11:29:35.7384 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-url
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-url'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:29:35.7682 Info Adding target AsyncTargetWrapper(Name=allLogfile)
+2023-05-13 11:29:35.7725 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-iP
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-iP'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:29:35.7725 Warn Error has been raised. Exception: NLog.NLogConfigurationException: ${aspnet-request-iP} cannot assign unknown property 'CheckForwardedForHeader='
+2023-05-13 11:29:35.7725 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-url
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-url'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:29:35.7725 Info Adding target AsyncTargetWrapper(Name=dayLogFile)
+2023-05-13 11:29:35.7930 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-iP
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-iP'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:29:35.7930 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-url
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-url'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:29:35.7930 Info Adding target AsyncTargetWrapper(Name=console)
+2023-05-13 11:29:35.7930 Info Adding target AsyncTargetWrapper(Name=blackhole)
+2023-05-13 11:29:35.8569 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=E:\代码练习\dotNetPractiseCollect\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
+2023-05-13 11:29:35.9008 Info Configuration initialized.
+2023-05-13 11:29:35.9448 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
+2023-05-13 11:30:33.0971 Info Message Template Auto Format enabled
+2023-05-13 11:30:33.1103 Info Loading assembly: NLog.Web.AspNetCore
+2023-05-13 11:30:33.1224 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Error loading extensions: NLog.Web.AspNetCore
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'. 系统找不到指定的文件。
+File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
+   at System.Reflection.RuntimeAssembly.InternalLoad(ObjectHandleOnStack assemblyName, ObjectHandleOnStack requestingAssembly, StackCrawlMarkHandle stackMark, Boolean throwOnFileNotFound, ObjectHandleOnStack assemblyLoadContext, ObjectHandleOnStack retAssembly)
+   at System.Reflection.RuntimeAssembly.InternalLoad(AssemblyName assemblyName, RuntimeAssembly requestingAssembly, StackCrawlMark& stackMark, Boolean throwOnFileNotFound, AssemblyLoadContext assemblyLoadContext)
+   at System.Reflection.Assembly.Load(String assemblyString)
+   at NLog.Internal.AssemblyHelpers.LoadFromName(String assemblyName)
+   at NLog.Config.LoggingConfigurationParser.ParseExtensionWithAssembly(String assemblyName, String prefix)
+   --- End of inner exception stack trace ---
+2023-05-13 11:30:33.3127 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-iP
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-iP'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:30:33.3167 Warn Error has been raised. Exception: NLog.NLogConfigurationException: ${aspnet-request-iP} cannot assign unknown property 'CheckForwardedForHeader='
+2023-05-13 11:30:33.3167 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-url
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-url'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:30:33.3540 Info Adding target AsyncTargetWrapper(Name=allLogfile)
+2023-05-13 11:30:33.3540 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-iP
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-iP'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:30:33.3540 Warn Error has been raised. Exception: NLog.NLogConfigurationException: ${aspnet-request-iP} cannot assign unknown property 'CheckForwardedForHeader='
+2023-05-13 11:30:33.3540 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-url
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-url'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:30:33.3540 Info Adding target AsyncTargetWrapper(Name=dayLogFile)
+2023-05-13 11:30:33.3703 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-iP
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-iP'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:30:33.3703 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-url
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-url'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:30:33.3703 Info Adding target AsyncTargetWrapper(Name=console)
+2023-05-13 11:30:33.3703 Info Adding target AsyncTargetWrapper(Name=blackhole)
+2023-05-13 11:30:33.4424 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=E:\代码练习\dotNetPractiseCollect\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
+2023-05-13 11:30:33.5251 Info Configuration initialized.
+2023-05-13 11:30:33.5581 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
+2023-05-13 11:33:25.5447 Info Message Template Auto Format enabled
+2023-05-13 11:33:25.5604 Info Loading assembly: NLog.Web.AspNetCore
+2023-05-13 11:33:25.5692 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Error loading extensions: NLog.Web.AspNetCore
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'. 系统找不到指定的文件。
+File name: 'NLog.Web.AspNetCore, Culture=neutral, PublicKeyToken=null'
+   at System.Reflection.RuntimeAssembly.InternalLoad(ObjectHandleOnStack assemblyName, ObjectHandleOnStack requestingAssembly, StackCrawlMarkHandle stackMark, Boolean throwOnFileNotFound, ObjectHandleOnStack assemblyLoadContext, ObjectHandleOnStack retAssembly)
+   at System.Reflection.RuntimeAssembly.InternalLoad(AssemblyName assemblyName, RuntimeAssembly requestingAssembly, StackCrawlMark& stackMark, Boolean throwOnFileNotFound, AssemblyLoadContext assemblyLoadContext)
+   at System.Reflection.Assembly.Load(String assemblyString)
+   at NLog.Internal.AssemblyHelpers.LoadFromName(String assemblyName)
+   at NLog.Config.LoggingConfigurationParser.ParseExtensionWithAssembly(String assemblyName, String prefix)
+   --- End of inner exception stack trace ---
+2023-05-13 11:33:25.7640 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-iP
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-iP'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:33:25.7640 Warn Error has been raised. Exception: NLog.NLogConfigurationException: ${aspnet-request-iP} cannot assign unknown property 'CheckForwardedForHeader='
+2023-05-13 11:33:25.7640 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-url
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-url'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:33:25.8008 Info Adding target AsyncTargetWrapper(Name=allLogfile)
+2023-05-13 11:33:25.8008 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-iP
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-iP'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:33:25.8008 Warn Error has been raised. Exception: NLog.NLogConfigurationException: ${aspnet-request-iP} cannot assign unknown property 'CheckForwardedForHeader='
+2023-05-13 11:33:25.8008 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-url
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-url'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:33:25.8008 Info Adding target AsyncTargetWrapper(Name=dayLogFile)
+2023-05-13 11:33:25.8226 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-iP
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-iP'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:33:25.8226 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Failed to parse layout containing type: aspnet-request-url
+ ---> System.ArgumentException: LayoutRenderer type-alias is unknown: 'aspnet-request-url'. Extension NLog.Web.AspNetCore not included?
+   at NLog.Config.Factory`2.CreateInstance(String itemName)
+   at NLog.Layouts.LayoutParser.GetLayoutRenderer(String typeName, ConfigurationItemFactory configurationItemFactory, Nullable`1 throwConfigExceptions)
+   --- End of inner exception stack trace ---
+2023-05-13 11:33:25.8226 Info Adding target AsyncTargetWrapper(Name=console)
+2023-05-13 11:33:25.8226 Info Adding target AsyncTargetWrapper(Name=blackhole)
+2023-05-13 11:33:25.9363 Info Validating config: TargetNames=blackhole, console, allLogfile, dayLogFile, ConfigItems=88, FilePath=E:\代码练习\dotNetPractiseCollect\dotNet6WebApi\dotNet6WebApi\bin\Debug\net6.0\NLog.config
+2023-05-13 11:33:26.0212 Info Configuration initialized.
+2023-05-13 11:33:26.0661 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.0.4.1331. Product version: 5.0.4+aa1d486dedd0a8ab6d32b2792e74cc86ae39a0aa. GlobalAssemblyCache: False
