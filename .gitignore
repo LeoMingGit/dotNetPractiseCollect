@@ -6,3 +6,6 @@
 /dotNet6WebApi/Model/bin
 /dotNet6WebApi/Service/bin
 /dotNet6WebApi/Service/obj
+/chunk-files/ChunkApi/packages
+/chunk-files/ChunkApi/ChunkApi/bin
+/chunk-files/ChunkApi/ChunkApi/obj
