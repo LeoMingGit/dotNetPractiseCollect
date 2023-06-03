@@ -1,2 +1,1 @@
-# dotNetPractise
-
+#。net 实践
