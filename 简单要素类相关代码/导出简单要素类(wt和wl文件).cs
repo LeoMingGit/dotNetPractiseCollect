@@ -1,4 +1,39 @@
 
+    
+       public   class  导出简单要素类示例{
+         /// <summary>
+        /// 导出简单要素类
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns>返回6X文件路径</returns>
+        public ActionResult<string> ExportSfclsInMainSheet(ExportSfclsDto dto)
+        {
+            var config = ProjectConfig.Instance;
+            var gdb = GDBURLHelper.OpenDataBase(config.DBUrl);
+            if (gdb == null)
+            {
+                return new ActionResult<string>(false, $"打开地理数据库{config.DBUrl}失败或不存在");
+            }
+            //查询表单数据
+            var mainSheetDataList=ResolveMainSheetData(dto.prjId, dto.sheetName, dto.sheetDataIds, out string sfclsType);
+            //项目名称
+            var projectName = AppRuntime.GetService<IRepository<ProjectInfoEntity>>().FindAll(Specification<ProjectInfoEntity>.Eval(t => t.PrjId == dto.prjId)).FirstOrDefault()?.PrjName;
+            if (sfclsType== SfclsTypeEnum.point.ToString())
+            {
+                //生成点类型要素类
+                return GeneratePointSfcls(gdb, projectName, dto.sheetName, mainSheetDataList);
+            }
+            else if (sfclsType == SfclsTypeEnum.line.ToString())
+            {
+                //生成线类型要素类
+                return GenerateLineSfcls(gdb, projectName, dto.sheetName, mainSheetDataList);
+            }
+            else
+            {
+                gdb.Close();
+                return new ActionResult<string>(false, "导出的数据不是点类型和线类型!","");
+            }
+        }
         /// <summary>
         /// 生成点类型要素类
         /// </summary>
@@ -234,3 +269,4 @@
            
             return listData;
         }
+   }
