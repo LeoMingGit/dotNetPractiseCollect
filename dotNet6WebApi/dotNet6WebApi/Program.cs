@@ -23,6 +23,9 @@ builder.Services.AddScoped<ITokenHandler, TokenHandler>();
 builder.Services.AddScoped<IUserManagerService, UserService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<IUserManagerRepository, UserManagerRepository>();
+builder.Services.AddScoped<ITaskRunService, TaskRunImplService>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
