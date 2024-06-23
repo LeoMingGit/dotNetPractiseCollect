@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Net.Http.Headers;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using NPOI.SS.Formula.Functions;
 
 namespace Common
 {
@@ -113,6 +115,38 @@ namespace Common
             var serializedObject = Newtonsoft.Json.JsonConvert.SerializeObject(sourceItem, deserializeSettings);
 
             return Newtonsoft.Json.JsonConvert.DeserializeObject<TTarget>(serializedObject);
+        }
+
+
+
+
+
+
+        /// <summary>
+        /// 拷贝远程文件到本地指定目录
+        /// </summary>
+        /// <param name="fileName">源文件</param>
+        /// <param name="tagetFilePath">目标目录param>
+        /// <param name="credentials">  new NetworkCredential(@"admin", "123456");</param>
+        /// <param name="networkPath">IP</param>
+        /// <returns></returns>
+        public static bool CopyRemoteFile(string fileName,string tagetFilePath, NetworkCredential credentials, string networkPath)
+        {
+            using (new ConnectToSharedFolder(networkPath, credentials))
+            {
+                string myNetworkPath = Path.Combine(networkPath, fileName);
+                try
+                {
+                    File.Copy(myNetworkPath, tagetFilePath, true);
+
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    string errorMsg = ex.Message.ToString();
+                    return false;
+                }
+            }
         }
     }
 }
