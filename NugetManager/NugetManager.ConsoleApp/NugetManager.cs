@@ -13,6 +13,9 @@ using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 namespace NugetManager.ConsoleApp
 {
@@ -24,23 +27,23 @@ namespace NugetManager.ConsoleApp
         /// </summary>
         public static async void SynctAllNugetPackages()
         {
- 
             var pacakeSource = GetLocalPackageSources();
-
             if(pacakeSource == null)
             {
-                Console.WriteLine("Not Found Local Pakage Source");
+                Console.WriteLine("未找到本机Nuget源");
                 return;
             }
+            var allLocalNugetList = FetchAllPackagesAsync(pacakeSource.PackageSource).Result.ToList();
 
-            var allList = FetchAllPackagesAsync(pacakeSource.PackageSource).Result.ToList();
-
-
-            string targetSource = "http://192.168.120.97:5555/v3/index.json";
-            string apiKey = "ichia@sz321";
-            foreach (var packageItem in allList)
+            if(allLocalNugetList == null || allLocalNugetList.Count() == 0)
             {
-               await PushPackageAsync(packageItem.PackagePath.ToString(), targetSource, apiKey);
+                Console.WriteLine("本地Nuget数量为0");
+            }
+           
+            foreach (var packageItem in allLocalNugetList)
+            {
+                var targetItem = ToPackageDetailItem(packageItem);
+                await PushPackageAsync(targetItem);
             }
         }
 
@@ -87,7 +90,7 @@ namespace NugetManager.ConsoleApp
                     "", // 空字符串表示搜索所有包
                     searchFilter,
                     skip: 0,
-                    take: 1000, // 每次检索1000个包，您可以根据需要调整这个值
+                    take: 10000, // 每次检索10000个包，您可以根据需要调整这个值
                     log: NullLogger.Instance,
                     cancellationToken: System.Threading.CancellationToken.None);
                 var packages = searchResults.ToList();
@@ -105,19 +108,33 @@ namespace NugetManager.ConsoleApp
         /// <summary>
         /// 推送到遠端
         /// </summary>
-        /// <param name="packageFilePath"></param>
-        /// <param name="source"></param>
-        /// <param name="apiKey"></param>
+        /// <param name="dto"></param>
         /// <returns></returns>
-        /// <exception cref="Exception"></exception>
-        private async static Task PushPackageAsync(string packageFilePath, string source, string apiKey)
+        private async static Task PushPackageAsync(PackageDetailItem dto)
+        {
+
+            var source = "http://192.168.120.97:5555/v3/index.json";
+            var apiKey = "ichia@sz321";
+            var pacageFullName = $"{dto.Title}.{dto.OriginalVersion}";
+            var client = new NuGetClient("http://192.168.120.97:5555/v3/index.json");
+            var nugetList = await client.SearchAsync(dto.Title);
+            if (string.IsNullOrEmpty(dto.OriginalVersion)&&nugetList.Count>0)
             {
+                Console.WriteLine($"{pacageFullName} 已上傳");
+                return;
+            }
+            var filterNugetList = nugetList.Where(x=>x.Version.Equals(dto.OriginalVersion)).ToList();
+            if(filterNugetList.Count>0)
+            {
+                Console.WriteLine($"{pacageFullName} 已上傳");
+                return;
+            }
 
 
-                var processInfo = new ProcessStartInfo
+            var processInfo = new ProcessStartInfo
                 {
                     FileName = "dotnet",
-                    Arguments = $"nuget push \"{packageFilePath}\" -s {source} -k {apiKey}",
+                    Arguments = $"nuget push \"{pacageFullName}\" -s {source} -k {apiKey}",
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
                     UseShellExecute = false,
@@ -128,8 +145,8 @@ namespace NugetManager.ConsoleApp
                 {
                     process.StartInfo = processInfo;
 
-                    process.OutputDataReceived += (sender, args) => Console.WriteLine(args.Data);
-                    process.ErrorDataReceived += (sender, args) => Console.WriteLine($"ERROR: {args.Data}");
+                    process.OutputDataReceived += (sender, args) => Console.WriteLine($"{pacageFullName} 成功: {args.Data}");
+                    process.ErrorDataReceived += (sender, args) => Console.WriteLine($"{pacageFullName} 失败: {args.Data}");
 
                     process.Start();
                     process.BeginOutputReadLine();
@@ -139,11 +156,26 @@ namespace NugetManager.ConsoleApp
 
                     if (process.ExitCode != 0)
                     {
-                        throw new Exception($"dotnet nuget push failed with exit code {process.ExitCode}");
+                        Console.WriteLine($"{pacageFullName} 执行失败");
                     }
                 }
             }
 
- 
+        /// <summary>
+        /// 轉成 PackageDetailItem
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        private static PackageDetailItem ToPackageDetailItem(dynamic data)
+        {
+            var dto = new PackageDetailItem();
+            dto.PackagePath = data.PackagePath;
+            dto.Title = data.Title;
+            if (data.Identity.HasVersion)
+            {
+                dto.OriginalVersion = data.Identity.Version.OriginalVersion;
+            }
+            return dto;
+        }
     }
 }
