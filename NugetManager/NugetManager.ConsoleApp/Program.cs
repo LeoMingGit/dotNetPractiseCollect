@@ -6,7 +6,10 @@ namespace NugetManager.ConsoleApp
     {
         static void Main(string[] args)
         {
-            NugetManager.SynctAllNugetPackages();
+
+            NugetManager.SynctAllNugetPackages("D:\\A_ichiaCode\\DingDing\\ichia_api");
+
+
             Console.ReadLine();
         }
     }

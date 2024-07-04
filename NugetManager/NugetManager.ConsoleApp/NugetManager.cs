@@ -3,15 +3,18 @@ using NuGet.Common;
 using NuGet.Configuration;
 using NuGet.Protocol;
 using NuGet.Protocol.Core.Types;
+using NuGet.Versioning;
 using NugetManager.ConsoleApp.Dto;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Security.Principal;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Console = Colorful.Console;
 
 namespace NugetManager.ConsoleApp
@@ -26,25 +29,20 @@ namespace NugetManager.ConsoleApp
         /// <summary>
         /// 同步本地所有的Nuget 包
         /// </summary>
-        public static async void SynctAllNugetPackages()
+        /// <param name="slnPath"></param>
+        public static async void SynctAllNugetPackages(string slnPath)
         {
-            var pacakeSource = GetLocalPackageSources();
-            if(pacakeSource == null)
+            var slnNugetList = GetAllNugetBySlnPath(slnPath);
+            if (slnNugetList == null || slnNugetList.Count==0)
             {
-                Console.WriteLine("未找到本机Nuget源");
+                Console.WriteLine("未找到项目中的依赖项");
                 return;
             }
-            var allLocalNugetList = FetchAllPackagesAsync(pacakeSource.PackageSource).Result.ToList();
-
-            if(allLocalNugetList == null || allLocalNugetList.Count() == 0)
+          
+            var errorList = new List<string>();
+            foreach (var packageItem in slnNugetList)
             {
-                Console.WriteLine("本地Nuget数量为0");
-            }
-           var errorList = new List<string>();
-            foreach (var packageItem in allLocalNugetList)
-            {
-                var targetItem = ToPackageDetailItem(packageItem);
-                var msg =await PushPackageAsync(targetItem);
+                var msg =await PushPackageAsync(packageItem);
                 if(false == string.IsNullOrEmpty(msg))
                 {
                     errorList.Add(msg);
@@ -54,8 +52,8 @@ namespace NugetManager.ConsoleApp
             Console.Write("\n\n\n");
             Console.Write($"------------------------------------{DateTime.Now}----------------------------------------\n\n");
 
-            Console.WriteLine($"总数：{allLocalNugetList.Count}条\n", Color.Green);
-            Console.WriteLine($"成功：{allLocalNugetList.Count- errorList.Count}条\n",Color.Green);
+            Console.WriteLine($"总数：{slnNugetList.Count}条\n", Color.Green);
+            Console.WriteLine($"成功：{slnNugetList.Count- errorList.Count}条\n",Color.Green);
             if(errorList.Count > 0) 
             {
                 Console.WriteLine($"失败：{errorList.Count}", Color.Red);
@@ -67,61 +65,105 @@ namespace NugetManager.ConsoleApp
         }
 
         /// <summary>
-        /// 獲取本地Nuget 源
+        /// 
         /// </summary>
+        /// <param name="packageName"></param>
+        /// <param name="packageVersion"></param>
         /// <returns></returns>
-        private static PackageSourceItem GetLocalPackageSources()
+        private static ProjPackageItem GetLocalNuGetPackagePath(string packageName, string packageVersion)
         {
-            var settings = Settings.LoadDefaultSettings(null);
-            var packageSourceProvider = new PackageSourceProvider(settings);
-            var sources = packageSourceProvider.LoadPackageSources().Where(source => source.IsEnabled);
-
-            var packageSourceItems = new List<PackageSourceItem>();
-            foreach (var source in sources)
+            // 获取当前用户的 NuGet 包目录
+            string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            string nugetPackageRoot = Path.Combine(userProfile, ".nuget", "packages");
+            string _temp_packageVersion = string.Empty;
+            if (packageVersion.Contains("*"))
             {
-                packageSourceItems.Add(new PackageSourceItem
+                // 查找满足版本要求的包
+                string packageDir = Path.Combine(nugetPackageRoot, packageName);
+                if (Directory.Exists(packageDir))
                 {
-                    Name = source.Name,
-                    Source = source.Source,
-                    PackageSource = source
-                });
+                    var versionDirs = Directory.GetDirectories(packageDir);
+                    var versions = versionDirs.Select(Path.GetFileName)
+                                              .Where(v => Version.TryParse(v, out _))
+                                              .Select(Version.Parse)
+                                              .OrderByDescending(v => v);
+
+                    foreach (var version in versions)
+                    {
+                        if (VersionSatisfies(packageVersion, version))
+                        {
+                            _temp_packageVersion = version.ToString();
+                            break;
+                        }
+                    }
+                    if (string.IsNullOrEmpty(_temp_packageVersion))
+                    {
+                        Console.WriteLine($"{packageName} {packageVersion}",Color.Red);
+                    }
+                    packageVersion = _temp_packageVersion;
+                }
             }
-            return packageSourceItems.Where(x=>x.Name == "Microsoft Visual Studio Offline Packages").ToList().FirstOrDefault();
+            // 构建包的完整路径
+            var packagePath = Path.Combine(nugetPackageRoot, packageName, packageVersion,$"{packageName}.{packageVersion}.nupkg");
+            return new ProjPackageItem { packageName = packageName, packageVersion = packageVersion, fullPath = packagePath };
+         }
+
+        private static bool VersionSatisfies(string versionPattern, Version version)
+        {
+            // 简单的通配符匹配实现
+            var patternParts = versionPattern.Split('.');
+            var versionParts = version.ToString().Split('.');
+
+            for (int i = 0; i < patternParts.Length; i++)
+            {
+                if (patternParts[i] == "*") continue;
+                if (i >= versionParts.Length || patternParts[i] != versionParts[i]) return false;
+            }
+
+            return true;
         }
 
-
-        private static readonly HttpClient HttpClientInstance = new HttpClient();
 
         /// <summary>
-        /// 獲取所有NuGet明細
+        /// 获取指定文件夹的项目依赖
         /// </summary>
-        /// <param name="packageSource">NuGet包源</param>
-        /// <returns>返回包含所有包明細的列表</returns>
-        public async static Task<IEnumerable<dynamic>> FetchAllPackagesAsync(PackageSource packageSource)
+        /// <param name="slnPath"></param>
+        private static List<ProjPackageItem> GetAllNugetBySlnPath(string slnPath)
         {
-            try
+            if (Directory.Exists(slnPath)==false)
             {
-                var repository = Repository.Factory.GetCoreV3(packageSource.Source);
-                var searchResource = await repository.GetResourceAsync<PackageSearchResource>();
-
-                var searchFilter = new SearchFilter(includePrerelease: true);
-                var searchResults = await searchResource.SearchAsync(
-                    "", // 空字符串表示搜索所有包
-                    searchFilter,
-                    skip: 0,
-                    take: 10000, // 每次检索10000个包，您可以根据需要调整这个值
-                    log: NullLogger.Instance,
-                    cancellationToken: System.Threading.CancellationToken.None);
-                var packages = searchResults.ToList();
-
-                return packages;
+                return new List<ProjPackageItem>();
             }
-            catch (Exception ex)
+            var nugetPackages = new List<ProjPackageItem>();
+
+            // 获取所有 .csproj 文件
+            string[] projectFiles = Directory.GetFiles(slnPath, "*.csproj", SearchOption.AllDirectories);
+
+            foreach (string projectFile in projectFiles)
             {
-                Console.WriteLine($"Error fetching packages: {ex.Message}");
-                return new List<PackageSearchMetadata>();
+                // 加载和解析 .csproj 文件
+                XDocument projectXml = XDocument.Load(projectFile);
+                XNamespace ns = projectXml.Root.Name.Namespace;
+
+                // 查找所有 PackageReference 元素
+                foreach (XElement packageReference in projectXml.Descendants(ns + "PackageReference"))
+                {
+                    string packageName = packageReference.Attribute("Include")?.Value;
+                    string packageVersion = packageReference.Attribute("Version")?.Value;
+
+                    if (!string.IsNullOrEmpty(packageName) && !string.IsNullOrEmpty(packageVersion))
+                    {
+                        var packageItem= GetLocalNuGetPackagePath(packageName, packageVersion);
+                   
+                        nugetPackages.Add(packageItem);
+                    }
+                }
             }
+
+            return nugetPackages;
+
         }
+
 
 
         /// <summary>
@@ -129,31 +171,35 @@ namespace NugetManager.ConsoleApp
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        private async static Task<string> PushPackageAsync(PackageDetailItem dto)
+        private async static Task<string> PushPackageAsync(ProjPackageItem dto)
         {
-
             var source = "http://192.168.120.97:5555/v3/index.json";
             var apiKey = "ichia@sz321";
-            var pacageFullName = $"{dto.Id}.{dto.OriginalVersion}";
+            var pacageFullName = $"{dto.packageName}.{dto.packageVersion}";
+            if (File.Exists(dto.fullPath) == false)
+            {
+                Console.WriteLine($"{pacageFullName} 未找到");
+                return $"{pacageFullName} 未找到";
+            }
+
             var client = new NuGetClient("http://192.168.120.97:5555/v3/index.json");
-            var nugetList = await client.SearchAsync(dto.Id);
-            if (string.IsNullOrEmpty(dto.OriginalVersion) && nugetList.Count > 0)
+            var nugetList = await client.SearchAsync(dto.packageName);
+            if (string.IsNullOrEmpty(dto.packageVersion) && nugetList.Count > 0)
             {
                 Console.WriteLine($"{pacageFullName} 已上传");
                 return string.Empty;
             }
-            var filterNugetList = nugetList.Where(x => x.Version.Equals(dto.OriginalVersion)).ToList();
+            var filterNugetList = nugetList.Where(x => x.Version.Equals(dto.packageVersion)).ToList();
             if (filterNugetList.Count > 0)
             {
                 Console.WriteLine($"{pacageFullName} 已上传");
                 return string.Empty;
             }
 
-
             var processInfo = new ProcessStartInfo
             {
                 FileName = "dotnet",
-                Arguments = $"nuget push \"{pacageFullName}\" -s {source} -k {apiKey}",
+                Arguments = $"nuget push \"{dto.fullPath}\" -s {source} -k {apiKey}",
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 UseShellExecute = false,
@@ -185,23 +231,5 @@ namespace NugetManager.ConsoleApp
             }
         }
 
-        /// <summary>
-        /// 轉成 PackageDetailItem
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        private static PackageDetailItem ToPackageDetailItem(dynamic data)
-        {
-            var dto = new PackageDetailItem();
-            dto.PackagePath = data.PackagePath;
-            dto.Title = data.Title;
-            dto.Id =data.Identity.Id;
-            if (data.Identity.HasVersion)
-            {
-                dto.OriginalVersion = data.Identity.Version.OriginalVersion;
-            }
-        
-            return dto;
-        }
     }
 }
