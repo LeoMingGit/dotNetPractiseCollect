@@ -16,9 +16,16 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
+using System.Drawing;
+using Console = Colorful.Console;
+using Colorful;
 
 namespace NugetManager.ConsoleApp
 {
+
+    /// <summary>
+    /// nuget上传管理
+    /// </summary>
     public class NugetManager
     {
 
@@ -39,11 +46,30 @@ namespace NugetManager.ConsoleApp
             {
                 Console.WriteLine("本地Nuget数量为0");
             }
-           
+           var errorList = new List<string>();
             foreach (var packageItem in allLocalNugetList)
             {
                 var targetItem = ToPackageDetailItem(packageItem);
-                await PushPackageAsync(targetItem);
+                var msg =await PushPackageAsync(targetItem);
+                if(false == string.IsNullOrEmpty(msg))
+                {
+                    errorList.Add(msg);
+                }
+            }
+
+            Console.Write("\n\n\n");
+            Console.Write($"----------------------------{DateTime.Now}--------------------------------\n\n");
+            if (errorList.Count == 0)
+            {
+                Console.WriteLine($"全部成功：{allLocalNugetList.Count}条",Color.Green);
+            }
+            else
+            {
+                Console.WriteLine($"失败：{errorList.Count}", Color.Red);
+                foreach (var item in errorList)
+                {
+                    Console.WriteLine($"\n {item}");
+                }
             }
         }
 
@@ -110,7 +136,7 @@ namespace NugetManager.ConsoleApp
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        private async static Task PushPackageAsync(PackageDetailItem dto)
+        private async static Task<string> PushPackageAsync(PackageDetailItem dto)
         {
 
             var source = "http://192.168.120.97:5555/v3/index.json";
@@ -120,14 +146,14 @@ namespace NugetManager.ConsoleApp
             var nugetList = await client.SearchAsync(dto.Title);
             if (string.IsNullOrEmpty(dto.OriginalVersion)&&nugetList.Count>0)
             {
-                Console.WriteLine($"{pacageFullName} 已上傳");
-                return;
+                Console.WriteLine($"{pacageFullName} 已上传");
+                return string.Empty;
             }
             var filterNugetList = nugetList.Where(x=>x.Version.Equals(dto.OriginalVersion)).ToList();
             if(filterNugetList.Count>0)
             {
-                Console.WriteLine($"{pacageFullName} 已上傳");
-                return;
+                Console.WriteLine($"{pacageFullName} 已上传");
+                return string.Empty;
             }
 
 
@@ -146,7 +172,7 @@ namespace NugetManager.ConsoleApp
                     process.StartInfo = processInfo;
 
                     process.OutputDataReceived += (sender, args) => Console.WriteLine($"{pacageFullName} 成功: {args.Data}");
-                    process.ErrorDataReceived += (sender, args) => Console.WriteLine($"{pacageFullName} 失败: {args.Data}");
+                    process.ErrorDataReceived += (sender, args) => Console.WriteLine($"{pacageFullName} 失败: {args.Data}", Color.Red);
 
                     process.Start();
                     process.BeginOutputReadLine();
@@ -156,8 +182,11 @@ namespace NugetManager.ConsoleApp
 
                     if (process.ExitCode != 0)
                     {
-                        Console.WriteLine($"{pacageFullName} 执行失败");
+                           Console.WriteLine($"{pacageFullName} 执行失败", Color.Red);
+                           return $"{pacageFullName} 执行失败";
+
                     }
+                    return string.Empty;
                 }
             }
 
