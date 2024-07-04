@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using Console = Colorful.Console;
 
@@ -133,9 +134,9 @@ namespace NugetManager.ConsoleApp
 
             var source = "http://192.168.120.97:5555/v3/index.json";
             var apiKey = "ichia@sz321";
-            var pacageFullName = $"{dto.Title}.{dto.OriginalVersion}";
+            var pacageFullName = $"{dto.Id}.{dto.OriginalVersion}";
             var client = new NuGetClient("http://192.168.120.97:5555/v3/index.json");
-            var nugetList = await client.SearchAsync(dto.Title);
+            var nugetList = await client.SearchAsync(dto.Id);
             if (string.IsNullOrEmpty(dto.OriginalVersion) && nugetList.Count > 0)
             {
                 Console.WriteLine($"{pacageFullName} 已上传");
@@ -194,10 +195,12 @@ namespace NugetManager.ConsoleApp
             var dto = new PackageDetailItem();
             dto.PackagePath = data.PackagePath;
             dto.Title = data.Title;
+            dto.Id =data.Identity.Id;
             if (data.Identity.HasVersion)
             {
                 dto.OriginalVersion = data.Identity.Version.OriginalVersion;
             }
+        
             return dto;
         }
     }
