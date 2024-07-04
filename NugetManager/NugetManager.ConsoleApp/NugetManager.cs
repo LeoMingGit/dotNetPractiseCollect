@@ -1,5 +1,4 @@
-﻿using BaGetter.Protocol.Models;
-using BaGetter.Protocol;
+﻿using BaGetter.Protocol;
 using NuGet.Common;
 using NuGet.Configuration;
 using NuGet.Protocol;
@@ -8,17 +7,11 @@ using NugetManager.ConsoleApp.Dto;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Net.Http;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
-using System.IO;
-using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using System.Drawing;
 using Console = Colorful.Console;
-using Colorful;
 
 namespace NugetManager.ConsoleApp
 {
@@ -58,12 +51,11 @@ namespace NugetManager.ConsoleApp
             }
 
             Console.Write("\n\n\n");
-            Console.Write($"----------------------------{DateTime.Now}--------------------------------\n\n");
-            if (errorList.Count == 0)
-            {
-                Console.WriteLine($"全部成功：{allLocalNugetList.Count}条",Color.Green);
-            }
-            else
+            Console.Write($"------------------------------------{DateTime.Now}----------------------------------------\n\n");
+
+            Console.WriteLine($"总数：{allLocalNugetList.Count}条\n", Color.Green);
+            Console.WriteLine($"成功：{allLocalNugetList.Count- errorList.Count}条\n",Color.Green);
+            if(errorList.Count > 0) 
             {
                 Console.WriteLine($"失败：{errorList.Count}", Color.Red);
                 foreach (var item in errorList)
@@ -144,13 +136,13 @@ namespace NugetManager.ConsoleApp
             var pacageFullName = $"{dto.Title}.{dto.OriginalVersion}";
             var client = new NuGetClient("http://192.168.120.97:5555/v3/index.json");
             var nugetList = await client.SearchAsync(dto.Title);
-            if (string.IsNullOrEmpty(dto.OriginalVersion)&&nugetList.Count>0)
+            if (string.IsNullOrEmpty(dto.OriginalVersion) && nugetList.Count > 0)
             {
                 Console.WriteLine($"{pacageFullName} 已上传");
                 return string.Empty;
             }
-            var filterNugetList = nugetList.Where(x=>x.Version.Equals(dto.OriginalVersion)).ToList();
-            if(filterNugetList.Count>0)
+            var filterNugetList = nugetList.Where(x => x.Version.Equals(dto.OriginalVersion)).ToList();
+            if (filterNugetList.Count > 0)
             {
                 Console.WriteLine($"{pacageFullName} 已上传");
                 return string.Empty;
@@ -158,37 +150,39 @@ namespace NugetManager.ConsoleApp
 
 
             var processInfo = new ProcessStartInfo
+            {
+                FileName = "dotnet",
+                Arguments = $"nuget push \"{pacageFullName}\" -s {source} -k {apiKey}",
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+
+            using (var process = new Process())
+            {
+                process.StartInfo = processInfo;
+
+                process.OutputDataReceived += (sender, args) => Console.WriteLine($"{pacageFullName} 成功: {args.Data}");
+                process.ErrorDataReceived += (sender, args) => Console.WriteLine($"{pacageFullName} 失败: {args.Data}", Color.Red);
+
+                process.Start();
+                process.BeginOutputReadLine();
+                process.BeginErrorReadLine();
+
+                await process.WaitForExitAsync();
+
+                if (process.ExitCode != 0)
                 {
-                    FileName = "dotnet",
-                    Arguments = $"nuget push \"{pacageFullName}\" -s {source} -k {apiKey}",
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                    UseShellExecute = false,
-                    CreateNoWindow = true
-                };
+                    Console.WriteLine($"{pacageFullName} 上传失败", Color.Red);
+                   
+                    return $"{pacageFullName} 上传失败";
 
-                using (var process = new Process())
-                {
-                    process.StartInfo = processInfo;
-
-                    process.OutputDataReceived += (sender, args) => Console.WriteLine($"{pacageFullName} 成功: {args.Data}");
-                    process.ErrorDataReceived += (sender, args) => Console.WriteLine($"{pacageFullName} 失败: {args.Data}", Color.Red);
-
-                    process.Start();
-                    process.BeginOutputReadLine();
-                    process.BeginErrorReadLine();
-
-                    await process.WaitForExitAsync();
-
-                    if (process.ExitCode != 0)
-                    {
-                           Console.WriteLine($"{pacageFullName} 执行失败", Color.Red);
-                           return $"{pacageFullName} 执行失败";
-
-                    }
-                    return string.Empty;
                 }
+                Console.WriteLine($"{pacageFullName} 上传成功", Color.Green);
+                return string.Empty;
             }
+        }
 
         /// <summary>
         /// 轉成 PackageDetailItem
