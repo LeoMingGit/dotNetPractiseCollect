@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NugetManager.ConsoleApp
+namespace NugetManager.ConsoleApp.Dto
 {
     public class PackageSourceItem
     {

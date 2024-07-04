@@ -1,7 +1,10 @@
-﻿using NuGet.Common;
+﻿using BaGetter.Protocol.Models;
+using BaGetter.Protocol;
+using NuGet.Common;
 using NuGet.Configuration;
 using NuGet.Protocol;
 using NuGet.Protocol.Core.Types;
+using NugetManager.ConsoleApp.Dto;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -21,7 +24,7 @@ namespace NugetManager.ConsoleApp
         /// </summary>
         public static async void SynctAllNugetPackages()
         {
-
+ 
             var pacakeSource = GetLocalPackageSources();
 
             if(pacakeSource == null)
@@ -37,7 +40,7 @@ namespace NugetManager.ConsoleApp
             string apiKey = "ichia@sz321";
             foreach (var packageItem in allList)
             {
-               // await PushPackageAsync(packageItem.PackagePath.ToString(), targetSource, apiKey);
+               await PushPackageAsync(packageItem.PackagePath.ToString(), targetSource, apiKey);
             }
         }
 
@@ -72,7 +75,7 @@ namespace NugetManager.ConsoleApp
         /// </summary>
         /// <param name="packageSource">NuGet包源</param>
         /// <returns>返回包含所有包明細的列表</returns>
-        public async static Task<IEnumerable<PackageSearchMetadata>> FetchAllPackagesAsync(PackageSource packageSource)
+        public async static Task<IEnumerable<dynamic>> FetchAllPackagesAsync(PackageSource packageSource)
         {
             try
             {
@@ -87,9 +90,7 @@ namespace NugetManager.ConsoleApp
                     take: 1000, // 每次检索1000个包，您可以根据需要调整这个值
                     log: NullLogger.Instance,
                     cancellationToken: System.Threading.CancellationToken.None);
-
-                // 将 IPackageSearchMetadata 转换为 PackageSearchMetadata 类型
-                var packages = searchResults.Select(result => result as PackageSearchMetadata);
+                var packages = searchResults.ToList();
 
                 return packages;
             }
@@ -111,6 +112,8 @@ namespace NugetManager.ConsoleApp
         /// <exception cref="Exception"></exception>
         private async static Task PushPackageAsync(string packageFilePath, string source, string apiKey)
             {
+
+
                 var processInfo = new ProcessStartInfo
                 {
                     FileName = "dotnet",
@@ -141,5 +144,6 @@ namespace NugetManager.ConsoleApp
                 }
             }
 
+ 
     }
 }
