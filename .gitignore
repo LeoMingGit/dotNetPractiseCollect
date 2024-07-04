@@ -25,3 +25,6 @@
 /NugetManager/NugetManager.Console/obj
 /NugetManager/NugetManager.Console/.vs
 /NugetManager/NugetManager.Wpf/.vs
+/NugetManager/NugetManager.ConsoleApp/.vs
+/NugetManager/NugetManager.ConsoleApp/bin
+/NugetManager/NugetManager.ConsoleApp/obj

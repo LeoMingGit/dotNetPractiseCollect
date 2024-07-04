@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NugetManager.Console
+namespace NugetManager.ConsoleApp
 {
     internal class Program
     {
