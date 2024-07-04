@@ -19,3 +19,9 @@
 /.vs
 /dotNet6WebApi/.vs/dotNet6WebApi/FileContentIndex/8ee77a01-84f2-4353-968c-5b1f76354bea.vsidx
 /dotNet6WebApi/.vs/dotNet6WebApi/FileContentIndex
+/NugetManager/NugetManager.Wpf/bin
+/NugetManager/NugetManager.Wpf/obj
+/NugetManager/NugetManager.Console/bin
+/NugetManager/NugetManager.Console/obj
+/NugetManager/NugetManager.Console/.vs
+/NugetManager/NugetManager.Wpf/.vs
