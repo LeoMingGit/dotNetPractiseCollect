@@ -6,7 +6,8 @@ namespace NugetManager.ConsoleApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            NugetManager.SynctAllNugetPackages();
+            Console.ReadLine();
         }
     }
 }
