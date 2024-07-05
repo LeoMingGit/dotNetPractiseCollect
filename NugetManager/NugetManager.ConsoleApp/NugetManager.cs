@@ -182,15 +182,28 @@ namespace NugetManager.ConsoleApp
                 Console.WriteLine($"{pacageFullName} 未找到");
                 return $"{pacageFullName} 未找到";
             }
-            var client = new NuGetClient("http://192.168.120.97:5555/v3/index.json");
-            var metadata = await client.GetPackageMetadataAsync(dto.packageName, new NuGetVersion(dto.packageVersion));
-
-            if (metadata != null)
+            if (dto.packageName.Contains("CHTCHSConv"))
             {
-                Console.WriteLine($"{pacageFullName} 已上传");
-                return string.Empty;
+
             }
-       
+            var client = new NuGetClient("http://192.168.120.97:5555/v3/index.json");
+
+            try
+            {
+                var metadata = await client.GetPackageMetadataAsync(dto.packageName, new NuGetVersion(dto.packageVersion));
+
+                if (metadata != null)
+                {
+                    Console.WriteLine($"{pacageFullName} 已上传");
+                    return string.Empty;
+                }
+
+            }
+            catch (Exception ex)
+            {
+               //找不到 報錯
+            }
+          
 
             var processInfo = new ProcessStartInfo
             {
