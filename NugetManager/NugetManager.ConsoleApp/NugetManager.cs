@@ -1,4 +1,5 @@
 ﻿using BaGetter.Protocol;
+using BaGetter.Protocol.Models;
 using NuGet.Common;
 using NuGet.Configuration;
 using NuGet.Protocol;
@@ -181,20 +182,15 @@ namespace NugetManager.ConsoleApp
                 Console.WriteLine($"{pacageFullName} 未找到");
                 return $"{pacageFullName} 未找到";
             }
-
             var client = new NuGetClient("http://192.168.120.97:5555/v3/index.json");
-            var nugetList = await client.SearchAsync(dto.packageName);
-            if (string.IsNullOrEmpty(dto.packageVersion) && nugetList.Count > 0)
+            var metadata = await client.GetPackageMetadataAsync(dto.packageName, new NuGetVersion(dto.packageVersion));
+
+            if (metadata != null)
             {
                 Console.WriteLine($"{pacageFullName} 已上传");
                 return string.Empty;
             }
-            var filterNugetList = nugetList.Where(x => x.Version.Equals(dto.packageVersion)).ToList();
-            if (filterNugetList.Count > 0)
-            {
-                Console.WriteLine($"{pacageFullName} 已上传");
-                return string.Empty;
-            }
+       
 
             var processInfo = new ProcessStartInfo
             {
