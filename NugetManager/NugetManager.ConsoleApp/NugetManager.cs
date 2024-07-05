@@ -151,7 +151,7 @@ namespace NugetManager.ConsoleApp
                 {
                     string packageName = packageReference.Attribute("Include")?.Value;
                     string packageVersion = packageReference.Attribute("Version")?.Value;
-
+                   
                     if (!string.IsNullOrEmpty(packageName) && !string.IsNullOrEmpty(packageVersion))
                     {
                         var packageItem= GetLocalNuGetPackagePath(packageName, packageVersion);
