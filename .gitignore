@@ -29,3 +29,4 @@
 /NugetManager/NugetManager.ConsoleApp/bin
 /NugetManager/NugetManager.ConsoleApp/obj
 /.vs
+/dotNet6WebApi/.vs
